@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Material Lite - register</title>
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <link rel="canonical" href="">
+    <link href='//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!--  <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/helpers.css">
+    <link rel="stylesheet" href="css/register.css"> -->
+    <style>
+    .mdl-layout--fixed-drawer.is-upgraded:not(.is-small-screen) > .mdl-layout__header {
+        margin-left: 0px;
+        width: 100%;
+    }
+    
+    .mdl-layout--fixed-drawer > .mdl-layout__content {
+        margin-left: 0px;
+        width: 100%;
+    }
+    
+    div.demo-drawer {
+        display: none;
+    }
+    
+    .mdl-layout__drawer-button {
+        display: none;
+    }
+    
+    [ng\:cloak],
+    [ng-cloak],
+    [data-ng-cloak],
+    [x-ng-cloak],
+    .ng-cloak,
+    .x-ng-cloak {
+        display: none !important;
+    }
+    </style>
+    
+</head>
+
+<body ng-cloak>
+    <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+        <div class="demo-ribbon mdl-color--blue"></div>
+        <main class="demo-main mdl-layout__content bg-image">
+            <h2 class="t-center mdl-color-text--white text-shadow">GoldSlam Sports - OTP Verification</h2>
+            <a id="top"></a>
+            <div class="demo-container mdl-grid m-10">
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+                </div>
+                <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+                    <div class="mdl-card__title hidden">
+                        <h2 class="mdl-card__title-text">
+                            <i class="material-icons mdl-color-text--grey m-r-5 lh-13">account_circle</i>Register
+                        </h2>
+                    </div>
+                    <div class="p-20">
+                    <div layout="row" ng-if="errMessage" class="mdl-color-text--red">
+                            <div flex class="m-b-30 t-center">
+                                {{errMessage}}
+                            </div>
+                        </div>
+                        <form name="otpPlusPasswordForm" class="m-t-20" novalidate role="form">
+                       
+                            <div layout="row" class="m-b-20">
+                                <div flex="100">
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label ng-if="!authorization.otpkey">Enter OTP<sup class='error'>*</sup></label>
+                                        <input ng-if="!authorization.otpkey" ng-model="data.otp" name="otp" ng-required="true" ng-maxlength="6" ng-minlength="6" maxlength="6">
+                                        <div ng-if="authorization.otpkey">
+                                            {{data.otp}}
+                                            <i ng-if="authorization.otpkey" style="position:absolute;right:5px;color:green;" class="fa fa-check-circle-o"></i>OTP Verified
+                                        </div>
+                                        
+                                            <small ng-show="otpPlusPasswordForm.otp.$touched&&otpPlusPasswordForm.otp.$error.required" class="error">
+                                                OTP is required!
+                                            </small>                                           
+                                            <small ng-show="otpPlusPasswordForm.otp.$error.minlength" class="error">
+                                                OTP should be 6 characeters length!
+                                            </small>
+                                        
+                                    </md-input-container>
+                                     <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                </div>
+                            </div>
+                            <div ng-if="authorization.otpkey">
+                                <div layout="row">
+                                    <div flex="100">
+                                        <md-input-container class="fullwidth no-m-tb">
+                                            <label>Enter Password<sup class='error'>*</sup></label>
+                                            <input type="password" ng-model="data.password" name="password" ng-required="true">
+                                            <div ng-messages="otpPlusPasswordForm.password.$error" ng-show="otpPlusPasswordForm.password.$touched || submitted">
+                                                <small ng-message="required" class="error">
+                                            Password is required!
+                                        </small>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="100">
+                                        <md-input-container class="fullwidth no-m-tb">
+                                            <label>Confirm Password<sup class='error'>*</sup></label>
+                                            <input type="password" ng-model="data.confirmPassword" name="confirmPassword" ng-required="true" compare-to="data.password" >
+                                            <div ng-messages="otpPlusPasswordForm.confirmPassword.$error" ng-show="otpPlusPasswordForm.confirmPassword.$touched || submitted" >
+                                                <small ng-message="required" class="error">Confirm Password is required!
+                                                </small>
+                                                <small ng-message="compareTo" class="error">Passwords didn't match!</small>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="t-center m-b-20">
+                               <button  type="submit" ng-click="submitOtpForm(data)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--indigo-A700 mdl-color--raised">Submit</button>
+                                <button ui-sref="root.login" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect mdl-color--raised">Cancel</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+</body>
+
+</html>

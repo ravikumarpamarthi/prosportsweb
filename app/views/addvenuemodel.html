@@ -1,0 +1,55 @@
+<md-dialog ng-cloak style="min-width:50%;">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white;">Add Venue</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+                <i ng-click="answer('useful')" class="mdl-color-text--white material-icons pointer">cancel</i>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <form name="addVenueForm">
+                <div layout="row" class="m-t-60 row-padding">
+                    <div flex>
+                        <md-input-container class="fullwidth">
+                            <label>Venue Name</label>
+                            <input ng-model="data.venueName" name="venuename" ng-required="true">
+                            <div ng-messages="addVenueForm.venuename.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                            Venue Name is required!
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="fullwidth">
+                            <label>Address</label>
+                            <input ng-model="data.address" name="address" ng-required="true">
+                            <div ng-messages="addVenueForm.address.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                            Address is required!
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col t-center">
+                        <button ng-click="answer(venue)" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" class="hidden">
+            <span flex></span>
+            <md-button ng-click="answer('useful')" style="margin-right:20px;">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

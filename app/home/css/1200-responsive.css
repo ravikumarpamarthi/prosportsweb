@@ -1,0 +1,235 @@
+/*------------------------------------------------------------------
+    Wrapper
+-------------------------------------------------------------------*/
+#wrapper.boxed {
+    max-width: 1084px
+}
+
+/*------------------------------------------------------------------
+    Container
+-------------------------------------------------------------------*/
+.container {
+    width: 1024px
+}
+
+/*------------------------------------------------------------------
+    Columns
+-------------------------------------------------------------------*/
+.col {
+    float: left
+}
+
+/*------------------------------------------------------------------
+    Top navigation
+-------------------------------------------------------------------*/
+#top_navigation {
+    font-size: 12px;
+    text-transform: uppercase;
+    display: block !important;
+    float: left;
+    margin: 10px 0
+}
+#top_navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+#top_navigation .top_navigation {
+    position: relative
+}
+#top_navigation .top_navigation > li {
+    float: left;
+    display: block
+}
+#top_navigation .top_navigation > li > a {
+    border-right: 1px solid #ddd;
+    padding: 0px 10px;
+    line-height: 16px;
+    position: relative;
+    display: block
+}
+#top_navigation .top_navigation > li:first-child > a {
+    padding-left: 0
+}
+#top_navigation .top_navigation > li:last-child > a {
+    border-right: 0
+}
+#top_navigation .top_navigation > li:hover > a,
+#top_navigation .top_navigation > li.current-menu-item > a {
+    color: #111
+}
+#top_navigation .top_navigation ul.sub-menu {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    min-width: 240px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+}
+#top_navigation .top_navigation ul.sub-menu li {
+    position: relative;
+    border-bottom: 1px solid #f5f5f5
+}
+#top_navigation .top_navigation ul.sub-menu li:last-child {
+    border-bottom: 0
+}
+#top_navigation .top_navigation ul.sub-menu li a {
+    display: block;
+    padding: 5px 10px
+}
+#top_navigation .top_navigation ul.sub-menu li a:hover {
+    color: #111
+}
+#top_navigation .top_navigation li:hover > ul.sub-menu {
+    display: block
+}
+#top_navigation .top_navigation ul.sub-menu ul.sub-menu {
+    left: 100%;
+    top: 0
+}
+#top_navigation .top_navigation > li > a span:after {
+    display: inline-block;
+    vertical-align: top;
+    font-family: "FontAwesome";
+    content: "\f0d7";
+    padding-left: 5px;
+    font-size: 10px;
+    color: #999
+}
+#top_navigation .top_navigation ul.sub-menu li a span:after {
+    position: absolute;
+    right: 15px;
+    display: inline-block;
+    vertical-align: top;
+    font-family: "FontAwesome";
+    content: "\f0da";
+    padding-left: 5px;
+    font-size: 10px;
+    color: #999
+}
+
+/*------------------------------------------------------------------
+    Main navigation
+-------------------------------------------------------------------*/
+#main_navigation {
+    display: block !important
+}
+#main_navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+#main_navigation .main_navigation {
+    position: relative
+}
+#main_navigation .main_navigation > li {
+    float: left;
+    display: block
+}
+#main_navigation .main_navigation > li > a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    position: relative;
+    display: block
+}
+#main_navigation .main_navigation > li:hover > a,
+#main_navigation .main_navigation > li.current-menu-item > a {
+    background-color: #fff;
+    color: #111
+}
+#main_navigation .main_navigation ul.sub-menu {
+    font-size: 14px;
+    display: none;
+    position: absolute;
+    z-index: 2;
+    min-width: 240px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+}
+#main_navigation .main_navigation ul.sub-menu li {
+    position: relative;
+    border-bottom: 1px solid #f5f5f5
+}
+#main_navigation .main_navigation ul.sub-menu li:last-child {
+    border-bottom: 0
+}
+#main_navigation .main_navigation ul.sub-menu li a {
+    display: block;
+    padding: 5px 15px
+}
+#main_navigation .main_navigation li:hover > ul.sub-menu {
+    display: block
+}
+#main_navigation .main_navigation ul.sub-menu li:hover > a {}
+#main_navigation .main_navigation ul.sub-menu ul.sub-menu {
+    left: 100%;
+    top: 0
+}
+#main_navigation .main_navigation > li > a span:after {
+    display: inline-block;
+    vertical-align: top;
+    font-family: "FontAwesome";
+    content: "\f0d7";
+    padding-left: 5px;
+    font-size: 8px;
+    color: #ddd
+}
+#main_navigation .main_navigation ul.sub-menu li a span:after {
+    position: absolute;
+    right: 15px;
+    display: inline-block;
+    vertical-align: top;
+    font-family: "FontAwesome";
+    content: "\f0da";
+    padding-left: 5px;
+    font-size: 10px;
+    color: #ddd
+}
+#main_navigation .main_navigation ul.dt_mega_menu {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    height: auto;
+    left: 0;
+    padding: 30px 10px 0 10px;
+    width: 100%;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+}
+#main_navigation .main_navigation li:hover > ul.dt_mega_menu {
+    display: block
+}
+#main_navigation .main_navigation ul.dt_mega_menu .widget {
+    float: left;
+    width: 25%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+/*------------------------------------------------------------------
+    Breaking news
+-------------------------------------------------------------------*/
+.breaking_news_container {
+    width: 914px
+}
+
+/*------------------------------------------------------------------
+    Grid layout block
+-------------------------------------------------------------------*/
+.grid_layout_block .item.width33 {
+    height: 265px
+}
+.grid_layout_block .item.width25 {
+    height: 197px
+}

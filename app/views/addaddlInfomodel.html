@@ -1,0 +1,54 @@
+<md-dialog ng-cloak style="min-width:50%;">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white;">Add Additional Information</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+                <i ng-click="cancel()" class="mdl-color-text--white material-icons pointer">cancel</i>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <form name="dataForm" ng-submit="save(dataForm,addlInfo)" novalidate>
+                <div layout="row" class="m-t-60 p-20">
+                    <div flex>
+                        <md-input-container class="fullwidth">
+                            <label>Name<sup class="error">*</sup></label>
+                            <input ng-model="addlInfo.key" name="name" pattern="[A-Z,a-z,0-9]*" ng-required="true" />
+                            <div ng-messages="dataForm.name.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                            Venue Name is required!
+                                        </small>
+                                <small ng-message="pattern" class="error">
+                                            Check Venue Name!
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="fullwidth">
+                            <label>Designation<sup class="error">*</sup></label>
+                            <input ng-model="addlInfo.value" name="designation" pattern="[A-Z,a-z,\s]*" ng-required="true"/>
+                            <div ng-messages="dataForm.designation.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                            Designation is required!
+                                        </small>
+                                <small ng-message="pattern" class="error">
+                                           Invalid Designation !
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+               
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col t-center">
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </md-dialog-content>
+</md-dialog>

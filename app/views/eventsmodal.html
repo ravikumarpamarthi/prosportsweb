@@ -1,0 +1,40 @@
+<md-dialog ng-cloak class="registertournament" style="min-width:80%;">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="mdl-color-text--white">Events</h2>
+                <span flex></span>
+                <i ng-click="cancel()" class="mdl-color-text--white material-icons pointer">cancel</i>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <div class="ml-card-holder ">
+                            <div class="mdl-card mdl-shadow--1dp ">
+                                <table ng-table="tableParamsevents" class="table mdl-data-table fullwidth  ">
+                                    <tr ng-repeat="item in $data">
+                                        <td width="50" class="text-left" header-class="'text-left'" data-title="'Name'" filter="{ 'firstname': 'text' }" sortable="'firstname'">{{item.name}}</td>
+                                        <td width="50" class="text-left" header-class="'text-left'" data-title="'Start Date'">{{item.startDate}}</td>
+                                        <td width="50" class="text-left" header-class="'text-left'" data-title="'End Date'">{{item.endDate}}</td>
+                                        <td width="50" class="text-center" header-class="'text-center'" data-title="'Actions'">
+                                            <button ng-class="!toggle ? 'mdl-color--indigo-A700 mdl-color-text--white' : 'mdl-color--colored mdl-color-text--black'" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="toggle = !toggle;showConfirm1($event);">{{toggle && 'Withdraw' || 'Register'}}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" class="hidden">
+            <span flex></span>
+            <md-button ng-click="answer('useful')" style="margin-right:20px;">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

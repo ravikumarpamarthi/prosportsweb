@@ -1,0 +1,144 @@
+<section class="registertournament">
+    <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <h3 class="mdl-color-text--white m-t-20 m-b-5">Registration for Tournament</h3>
+        </div>
+    </div>
+    <div layout="row">
+        <div flex="50">
+        </div>
+        <div flex="20">
+            <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+        </div>
+        <div flex="40">
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-cell mdl-cell-m-0 mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone no-p-l">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp">
+                    <div class="p-30">
+                        <!--  <div class="mdl-grid m-b-90">
+                            <div class="mdl-cell mdl-cell--1-col">
+                                <div class="mdl-grid mdl-grid--no-spacing">
+                                    <div class="mdl-cell mdl-cell-m-0 mdl-cell--12-col p-t-30">
+                                        <p>Sort By</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mdl-cell mdl-cell--4-col">
+                                <md-input-container class="fullwidth">
+                                    <label>Association</label>
+                                    <md-select ng-model="data.assoc.firstname">
+                                        <md-option ng-repeat="assoc in associationList" value="{{assoc.firstname}}">
+                                            {{assoc.firstname}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div class="mdl-cell mdl-cell--3-col">
+                                <md-input-container class="fullwidth">
+                                    <label>League</label>
+                                    <md-select ng-model="data.league">
+                                        <md-option ng-repeat="league in leagueList" value="{{league}}">
+                                            {{league}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div class="mdl-cell mdl-cell--3-col">
+                                <md-input-container class="fullwidth">
+                                    <label>Status</label>
+                                    <md-select ng-model="data.status">
+                                        <md-option ng-repeat="status in status" value="{{status}}">
+                                            {{status}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout="row">
+                            <div flex="10">
+                            </div>
+                            <div flex="70">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="search" name="search" />
+                                    <label class="mdl-textfield__label" for="search">Search for tournaments</label>
+                                </div>
+                            </div>
+                            <div flex="20" class="m-t-20">
+                                <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp"><i class="material-icons">search</i>
+                                </label>
+                            </div>
+                        </div> -->
+                        <div class="mdl-grid ">
+                            <div class="mdl-cell mdl-cell--12-col">
+                                <div class="ml-card-holder ">
+                                    <div class="mdl-card mdl-shadow--1dp ">
+                                        <div class="mdl-card__title ">
+                                            <h2 class="mdl-card__title-text">Tournaments</h2>
+                                        </div>
+                                        <table class="table mdl-data-table fullwidth">
+                                            <thead>
+                                                <th class="text-left">Tournament Name</th>
+                                                <th class="text-left">Association Name</th>
+                                                <th class="text-left">Start Date</th>
+                                                <th class="text-left">End Date</th>
+                                                <th class="text-left">Location</th>
+                                                <th class="text-right"></th>
+                                            </thead>
+                                            <tbody ng-init="data=[]" ng-repeat="item in tournaments">
+                                                <tr>
+                                                    <td>{{item.tournamentName}}</td>
+                                                    <td>{{item.associationName}}</td>
+                                                    <td>{{item.fromDate}}</td>
+                                                    <td>{{item.toDate}}</td>
+                                                    <td>{{item.location}}</td>
+                                                    <td>
+                                                        <i class="mdl-color-text--blue-grey-400 material-icons pointer" ng-click="getEvents(item.docId,$index);data[$index]=!data[$index];toggle = !toggle;">{{toggle && 'remove_circle_outline' || 'add_circle_outline'}}</i>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-show="data[$index]" class="animate-show">
+                                                    <td colspan="5">
+                                                        <table class="table mdl-data-table fullwidth">
+                                                            <thead>
+                                                                <th class="text-left">Event Name</th>
+                                                                <th class="text-left">Signin Start Date Time</th>
+                                                                <th class="text-left">Signin Start End Time</th>
+                                                                <th class="text-left">Actions</th>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="event in item.events" colspan="4" rowspan="4">
+                                                                    <td>{{event.eventName}}</td>
+                                                                    <td>{{event.signinStartDateTime}}</td>
+                                                                    <td>{{event.signinEndDateTime}}</td>
+                                                                    <td width="50" class="text-center" header-class="'text-center'" data-title="'Actions'">
+                                                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--indigo-A700 mdl-color-text--white">
+                                                                            Entry
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4" ng-if="item.eventsLoading">
+                                                                        <md-progress-circular md-diameter="48px" md-mode="indeterminate" class="md-accent"></md-progress-circular>
+                                                                    </td>
+                                                                    <td colspan="4" ng-if="item.eventsLoading==false && item.events.length==0">
+                                                                        No events found
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

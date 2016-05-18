@@ -1,0 +1,46 @@
+<md-dialog ng-cloak style="min-width:50%;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white;">Court details</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+            <i ng-click="cancel()" class="mdl-color-text--white material-icons pointer">cancel</i>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <form name="dataForm" ng-submit="save(dataForm,court)" novalidate>
+            <div layout="row" class="m-t-60 p-20">
+                <div flex>
+                    <md-input-container class="fullwidth">
+                        <label>Venue</label>
+                        <md-select ng-model="court.venueDocId"  ng-change="courtChange()">
+                            <md-option ng-repeat="venue in venues" value="{{venue.docId}}">
+                                {{$index+1}}.{{venue.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="mdl-grid mdl-grid--no-spacing">
+                <div class="mdl-cell mdl-cell--m-0 mdl-cell--12-col">
+                    <div layout="row" layout-wrap flex>
+                        <div flex="50" ng-repeat="court in selectedVenue.courts">
+                            <md-checkbox ng-checked="exists(court.courtId, courts)" ng-click="selectCourt(court, courts)">
+                                {{ court.courtName }}
+                            </md-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>{{courts}}
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col t-center">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </form>
+    </md-dialog-content>
+</md-dialog>

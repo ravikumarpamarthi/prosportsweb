@@ -1,0 +1,80 @@
+<section class="tables-data">
+    <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <div layout="row">
+                <div flex="30">
+                    <h3 class="mdl-color-text--white ">Sporting Venue</h3>
+                </div>
+                <div flex layout-align="end end">
+                    <a ui-sref="root.add-venue" class="mdl-button mdl-js-button mdl-button--raised mdl-color-text--white mdl-js-ripple-effect">
+                        <i class="material-icons pointer">add</i>Venue
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing m-t-10">
+        <div layout="row" class="hidden">
+            <div flex="30">
+                <h3 class="mdl-color-text--white ">Sporting Venue</h3>
+            </div>
+            <div flex layout-align="end end">
+                <a ui-sref="root.add-venue" class="mdl-button mdl-js-button mdl-button--raised mdl-color-text--white mdl-js-ripple-effect">
+                    <i class="material-icons pointer">add</i>Venue
+                </a>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp m-b-30">
+                    <div class="p-20">
+                        <div class="ml-card-holder ">
+                            <div class="mdl-card mdl-shadow--1dp ">
+                                <div layout="row">
+                                    <div flex="50">
+                                    </div>
+                                    <div flex="20">
+                                       <!--  <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular> -->
+                                    </div>
+                                    <div flex="40">
+                                    </div>
+                                </div>
+                                <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                    <colgroup>
+                                        <col class="auto-cell-size p-r-20">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left">Venue</th>
+                                            <th class="text-left">Sport Type</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-show="loading">
+                                        <tr>
+                                            <td colspan="6" class="t-center">
+                                                <md-progress-circular md-diameter="48px" md-mode="indeterminate" class="md-accent m-auto" ng-show="loading"></md-progress-circular>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody>
+                                        <tr ng-repeat="item in courtAdminList">
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.sportTypes[0]}}</td>
+                                            <td class="text-center"><i ui-sref="root.edit-sporting-venue({id:item.docId})" class="mdl-color-text--blue-grey-400 material-icons pointer ">mode_edit</i>
+                                                <i class="mdl-color-text--blue-grey-400 material-icons pointer hidden">delete</i>
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="courtAdminList.length==0">
+                                            <td colspan="3"> No records found</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

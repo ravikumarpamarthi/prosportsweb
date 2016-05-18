@@ -1,0 +1,58 @@
+<div class="demo-drawer mdl-layout__drawer mdl-color-text--blue-grey-50 mdl-color--grey-900">
+  <header class="mdl-color--white mdl-color-text--blue-grey-50 p-b-20">
+
+    <div class="mdl-grid mdl-grid--no-spacing m-t-25">
+
+      <div class="mdl-cell mdl-cell--12-col text-center mdl-cell--middle">
+        <img src="img/FashionNews.svg" class="logo-cus">
+            </div>
+
+        </div>
+    </header>
+    <ul ml-menu close-others="true" class="demo-navigation mdl-navigation">
+        <ml-menu-group path="ui-elements" ng-if="ASSOCIATION_ADMIN || SUPER_ADMIN">
+            <ml-menu-group-heading>
+                <i class="mdl-color-text--blue-grey-400 material-icons">account_balance</i>Associations
+            </ml-menu-group-heading>
+            <ml-menu-item ng-if="SUPER_ADMIN">
+                <a ng-click="setPageTile('Create Association')" class="mdl-navigation__link" ui-sref="root.associations"><i class="mdl-color-text--blue-grey-400 material-icons">group_add</i>Create Association</a>
+            </ml-menu-item>
+            <ml-menu-item ng-if="ASSOCIATION_ADMIN || SUPER_ADMIN">
+                <a ng-click="setPageTile('Edit Association')" class="mdl-navigation__link" ui-sref="root.associationslist"><i class="mdl-color-text--blue-grey-400 material-icons">gamepad</i>Edit Association</a>
+            </ml-menu-item>
+        </ml-menu-group>
+        <ml-menu-group path="ui-elements" ng-if="EVENT_ADMIN || ASSOCIATION_ADMIN || TOUR_ADMIN || SUPER_ADMIN">
+            <ml-menu-group-heading >
+              <i class="mdl-color-text--blue-grey-400 material-icons">highlight</i>Tournaments
+            </ml-menu-group-heading>
+            <ml-menu-item ng-if="ASSOCIATION_ADMIN || SUPER_ADMIN">
+                <a class="mdl-navigation__link" ui-sref="root.tournaments"><i class="mdl-color-text--blue-grey-400 material-icons">group_add</i>Create Tournament</a>
+            </ml-menu-item>
+            <ml-menu-item ng-if="TOUR_ADMIN || SUPER_ADMIN">
+                <a class="mdl-navigation__link" ui-sref="root.tournamentslist"><i class="mdl-color-text--blue-grey-400 material-icons">gamepad</i>Edit Tournament</a>
+            </ml-menu-item>
+            <ml-menu-item ng-if="EVENT_ADMIN || SUPER_ADMIN"> 
+                <a class="mdl-navigation__link" ui-sref="root.eventadmin"><i class="mdl-color-text--blue-grey-400 material-icons">language</i>Event Admin</a>
+            </ml-menu-item>
+
+        </ml-menu-group>
+        <ml-menu-group path="ui-elements">
+            <ml-menu-group-heading>
+              <i class="mdl-color-text--blue-grey-400 material-icons">group</i>Players
+            </ml-menu-group-heading>
+            <ml-menu-item>
+                <a class="mdl-navigation__link" ui-sref="root.viewtournament"><i class="mdl-color-text--blue-grey-400 material-icons">language</i>View Tournament</a>
+            </ml-menu-item>
+           <ml-menu-item>
+                <a class="mdl-navigation__link" ui-sref="root.registertournament"><i class="mdl-color-text--blue-grey-400 material-icons">gamepad</i>Tournament Registration</a>
+            </ml-menu-item>
+        </ml-menu-group>
+        
+        <ml-menu-item>
+            <a class="mdl-navigation__link" ui-sref="root.sporting-venue"><i class="mdl-color-text--blue-grey-400 material-icons">gamepad</i>Sporting Venue</a>
+        </ml-menu-item>
+        <ml-menu-item>
+            <a class="mdl-navigation__link" ui-sref="root.myaccount"><i class="mdl-color-text--blue-grey-400 material-icons">account_circle</i>My Account</a>
+        </ml-menu-item>
+    </ul>
+</div>

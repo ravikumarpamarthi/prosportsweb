@@ -1,0 +1,62 @@
+<section>
+    <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <h3 class="mdl-color-text--white m-t-20 m-b-5">Event Admin</h3>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing m-t-10">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp m-b-30">
+                    <div class="mdl-card__title hidden">
+                        <h2 class="mdl-card__title-text">{{data.length}} rows</h2>
+                    </div>
+                    <div layout="row">
+                        <div flex="50">
+                        </div>
+                        <div flex="20">
+                            
+                        </div>
+                        <div flex="40">
+                        </div>
+                    </div>
+                    <table class="mdl-data-table mdl-js-data-table fullwidth">
+                        <colgroup>
+                            <col class="auto-cell-size p-r-20">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Tournament Name</th>
+                                <th class="text-left">Association Name</th>
+                                <th class="text-left">Event Name</th>
+                                <th class="text-left">Start Date</th>
+                                <th class="text-left">End Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-show="loading">
+                            <tr>
+                                <td colspan="6" class="t-center" >
+                                <md-progress-circular md-diameter="48px" md-mode="indeterminate" class="md-accent m-auto" ng-show="loading"></md-progress-circular>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody  ng-repeat="item in events">                         
+                            
+                            <tr class="pointer" ui-sref="root.player-preparation({eventdocid:item.docId,tournamentDocId:item.tournamentDocId,teamsize:item.teamSize})">
+                                <td class="mdl-data-table__cell--non-numeric">{{item.tournamentName}}</td>
+                                <td>{{item.associationName}}</td>
+                                <td>{{item.eventName}}</td>
+                                <td>{{item.eventStartDate}}</td>
+                                <td>{{item.eventEndDate}}</td>
+                            </tr>
+                            <tr ng-if="events.length==0">
+                                <td colspan="4">No records found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

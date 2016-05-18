@@ -1,0 +1,242 @@
+ <section class="tables-data">
+  <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <div layout="row">
+                <div flex="30">
+                    <h3 class="mdl-color-text--white ">My Account</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing m-t-10">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp m-b-30">
+                    <div class="p-20">
+                            <div layout="row">
+                                    <div flex="50">
+                                    </div>
+                                    <div flex="20">
+                                        <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                    </div>
+                                    <div flex="40">
+                                    </div>
+                                </div>
+                        <form name="myAccountForm" class="m-t-20" ng-hide="registration">
+                            <div layout="row" layout-xs="column" class="m-b-20">
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>First Name<sup class="error">*</sup></label>
+                                        <input ng-model="data.firstName" name="firstname" ng-required="true">
+                                        <div ng-messages="myAccountForm.firstname.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            First Name is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Last Name <sup class="error">*</sup></label>
+                                        <input ng-model="data.lastName" name="lastname" ng-required="true">
+                                        <div ng-messages="myAccountForm.lastname.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Last Name is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column" class="m-b-20">
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Email<sup class="error">*</sup></label>
+                                        <input ng-model="data.email" name="email" ng-required="true" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" ng-required="true"> 
+                                        <div ng-messages="myAccountForm.email.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                             Email is required!
+                                            </small>
+                                            <small ng-message="pattern" class="error">
+                                             Invalid Email !
+                                            </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Mobile<sup class="error">*</sup></label>
+                                        <input ng-model="data.mobile" name="mobile" ng-pattern="/^([0-9]{10})+$/" minlength="10" maxlength="10" ng-required="true">
+                                        <div ng-messages="myAccountForm.mobile.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                                Mobile Number is required!
+                                            </small>
+                                            <small ng-message="required" class="error">
+                                                Invalid Mobile Number !
+                                            </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column" class="m-b-20">
+                                <div flex="50" layout-xs="100">
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Gender<sup class="error">*</sup></label>
+                                        <md-select ng-model="data.gender" name="associationadmin" ng-required="true" placeholder="Gender">
+                                            <md-option value="male">
+                                                Male
+                                            </md-option>
+                                            <md-option value="female">
+                                                Female
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="myAccountForm.associationadmin.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Assign Admin is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex="50" layout-xs="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>D.O.B<sup class="error">*</sup></label>
+                                        <input class="mdl-textfield__input" type="text" id="datepicker3" pikaday="datepicker3" format="DD-MMM-YYYY" trigger="open-datepicker3" theme="material-lite" ng-model="data.dob"/>
+                                        <div ng-messages="myAccountForm.dob.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            D.O.B is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                            </div>
+
+                          <div layout="row" layout-xs="column" class="m-b-20">
+
+                            <div flex="20">
+                                 <md-checkbox ng-model="vm.isOwner"  >
+                                        Team Owner
+                                    </md-checkbox>
+                                </div>
+                                <div flex="90" ng-if="vm.isOwner">
+                                <md-input-container class="fullwidth no-m-tb">
+                                        <label>Team Name<sup class="error">*</sup></label>
+                                        <input ng-model="data.teamname" name="teamname" >
+                                        <div ng-messages="myAccountForm.teamname.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Team Name is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                          </div>
+                            <div layout="row" layout-xs="column" class="m-b-20">
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Father's Name<sup class="error">*</sup></label>
+                                        <input ng-model="data.fatherName" name="fathername" ng-required="true">
+                                        <div ng-messages="myAccountForm.fathername.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Father's Name is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Mother's Name<sup class="error">*</sup></label>
+                                        <input ng-model="data.motherName" name="mothername" ng-required="true">
+                                        <div ng-messages="myAccountForm.mothername.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Mother's Name is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column" class="m-b-20">
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Occupation<sup class="error">*</sup></label>
+                                        <input ng-model="data.occupation" name="occupation" ng-required="true">
+                                        <div ng-messages="myAccountForm.occupation.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Occupation is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Address<sup class="error">*</sup></label>
+                                        <input g-places-autocomplete ng-model="data.address" name="address" ng-required="true">
+                                        <div ng-messages="myAccountForm.address.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Address is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column" class="m-b-20">
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Qualification<sup class="error">*</sup></label>
+                                        <input ng-model="data.qualification" name="qualification" ng-required="true">
+                                        <div ng-messages="myAccountForm.qualification.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Qualification is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb ">
+                                        <label>Preferred Sport</label>
+                                        <md-select placeholder="Preferred Sport" ng-model="data.prefferedSports" multiple="true">
+                                            <md-option ng-repeat="sport in sportType" value="{{sport.value}}">{{sport.value}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                            </div>
+
+                          <div layout="row" layout-xs="column" class="m-t-10 m-b-10">
+                                <div flex="100" class="fullwidth">
+                                    <md-input-container>
+                                        Profile Pic
+                                        <input type="file" name="file" ngf-select ng-model="profilePic">
+                                    </md-input-container>
+                                </div>
+                                <div flex="50">
+                                    <img class="img-thumb" src="{{$root.getImageFileById}}/{{data.profileImage}}.jpg" />
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column" class="m-t-30">
+                                <div flex="20">
+                                    <md-checkbox flex md-no-ink aria-label="Student" class="md-primary" ng-model="vm.student">
+                                        Are you a student?
+                                    </md-checkbox>
+                                </div>
+                                <div flex ng-if="vm.student">
+                                    <md-input-container ng-model="data.student"class="fullwidth no-m-tb p-t-5">
+                                        <label>School Name</label>
+                                        <input ng-model="data.schoolName" name="schoolname">
+                                    </md-input-container>
+                                </div>
+                                <div flex ng-if="vm.student">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Class</label>
+                                        <input ng-model="data.classLevel" name="class">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="m-t-20 t-center">
+                                <a type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--indigo-A700 mdl-color--raised" ng-click="updateProfile(profilePic, myAccountForm)">Update</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

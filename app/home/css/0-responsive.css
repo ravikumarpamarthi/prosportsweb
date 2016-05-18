@@ -1,0 +1,328 @@
+/*------------------------------------------------------------------
+    Container
+-------------------------------------------------------------------*/
+.container {
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+/*------------------------------------------------------------------
+    Columns
+-------------------------------------------------------------------*/
+.col {
+    width: 100%
+}
+
+/*------------------------------------------------------------------
+    Logo
+-------------------------------------------------------------------*/
+#header .header_main .logo {
+    width: 100%
+}
+#header .header_main .logo h1 {
+    padding: 10px
+}
+#header .header_main .logo h2 {
+    padding: 0 10px 10px 10px
+}
+
+/*------------------------------------------------------------------
+    Top navigation
+-------------------------------------------------------------------*/
+#top_navigation {
+    display: none;
+    clear: both;
+    width: 100%
+}
+#top_navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+#top_navigation .top_navigation > li > a {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    padding: 5px 10px;
+    border-bottom: 1px solid #f5f5f5
+}
+#top_navigation .top_navigation ul.sub-menu {
+    font-size: 14px
+}
+#top_navigation .top_navigation ul.sub-menu li a {
+    display: block;
+    padding: 5px 0;
+    padding-left: 20px;
+    border-bottom: 1px solid #f5f5f5
+}
+#top_navigation .top_navigation ul.sub-menu ul li a {
+    padding-left: 30px
+}
+#top_navigation .top_navigation ul.sub-menu ul ul li a {
+    padding-left: 40px
+}
+#top_navigation .top_navigation ul.sub-menu ul ul ul li a {
+    padding-left: 50px
+}
+.toggle_top_navigation {
+    display: block;
+    width: 100%;
+    padding-left: 10px
+}
+
+/*------------------------------------------------------------------
+    Main navigation
+-------------------------------------------------------------------*/
+.toggle_main_navigation {
+    display: block;
+    width: 100%
+}
+#main_navigation {
+    display: none;
+}
+#main_navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+#main_navigation .main_navigation > li > a {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    padding: 5px 10px;
+    border-bottom: 1px solid #f5f5f5
+}
+#main_navigation .main_navigation ul.sub-menu {
+    font-size: 14px
+}
+#main_navigation .main_navigation ul.sub-menu li a {
+    display: block;
+    padding: 5px 0;
+    padding-left: 20px;
+    border-bottom: 1px solid #f5f5f5
+}
+#main_navigation .main_navigation ul.sub-menu ul li a {
+    padding-left: 30px
+}
+#main_navigation .main_navigation ul.sub-menu ul ul li a {
+    padding-left: 40px
+}
+#main_navigation .main_navigation ul.sub-menu ul ul ul li a {
+    padding-left: 50px
+}
+#main_navigation .main_navigation ul.dt_mega_menu {
+    padding: 10px;
+    border-bottom: 1px solid #f5f5f5
+}
+#main_navigation .main_navigation ul.dt_mega_menu .widget {
+    width: 100%
+}
+#main_navigation .main_navigation ul.dt_mega_menu .widget:last-child {
+    margin-bottom: 0
+}
+.toggle_main_navigation {
+    display: block;
+    padding-left: 10px
+}
+
+/*------------------------------------------------------------------
+    Header main
+-------------------------------------------------------------------*/
+#header .header_meta .container,
+#header .header_main .container,
+#header .header_menu .container {
+    padding-left: 0;
+    padding-right: 0
+}
+
+/*------------------------------------------------------------------
+    Header menu
+-------------------------------------------------------------------*/
+#header .header_menu {
+    background-color: #fff
+}
+.header_menu_parent {
+    height: auto !important
+}
+#header .header_menu.fixed {
+    position: static !important;
+}
+
+/*------------------------------------------------------------------
+    Breaking news
+-------------------------------------------------------------------*/
+.breaking_news {
+    display: none
+}
+
+/*------------------------------------------------------------------
+    Social links
+-------------------------------------------------------------------*/
+ul.header_social_links {
+    display: none
+}
+
+/*------------------------------------------------------------------
+    Quick links
+-------------------------------------------------------------------*/
+#header .header_main .quick_links {
+    display: none
+}
+
+/*------------------------------------------------------------------
+    Header search
+-------------------------------------------------------------------*/
+#header .header_main .header_search form input[type="text"] {
+    padding: 6px 40px 6px 12px
+}
+#header .header_main .header_search form input[type="text"],
+#header .header_main .header_search {
+    width: 100%
+}
+#header .header_main .header_search:after {
+    padding: 6px 12px
+}
+
+/*------------------------------------------------------------------
+    Blog
+-------------------------------------------------------------------*/
+/*------------------------------------------------------------------
+    Global settings
+-------------------------------------------------------------------*/
+article.item .item_post_share .item_post_share_content {
+    left: 25px
+}
+
+/*------------------------------------------------------------------
+    Article small view
+-------------------------------------------------------------------*/
+.article_small_view .item .item_content h3 {
+    font-size: 18px;
+    line-height: 26px
+}
+
+/*------------------------------------------------------------------
+    Article list standard
+-------------------------------------------------------------------*/
+.article_list_view .item .item_header {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px
+}
+.article_list_view .item .item_content {
+    overflow: visible
+}
+.article_list_view .item .item_content h3 {
+    font-size: 18px;
+    line-height: 26px
+}
+.article_list_view .item .item_content p {
+    font-size: 14px;
+    line-height: 20px
+}
+
+/*------------------------------------------------------------------
+    Article list standard
+-------------------------------------------------------------------*/
+.article_standard_view .item .item_content h3 {
+    font-size: 18px;
+    line-height: 26px
+}
+.article_standard_view .item .item_content p {
+    font-size: 14px;
+    line-height: 20px
+}
+
+/*------------------------------------------------------------------
+    Posts
+-------------------------------------------------------------------*/
+article.post .post_content_in_container {
+    width: 100%;
+    float: none;
+    display: block;
+    margin: 0 0 20px 0
+}
+
+/*------------------------------------------------------------------
+    Main slider
+-------------------------------------------------------------------*/
+.main_slider .slide .slide_content {
+    padding: 10px;
+    padding-bottom: 5px;
+    max-width: 100%;
+    width: 100%
+}
+.main_slider .slide .slide_content h3 {
+    font-size: 18px;
+    line-height: 26px
+}
+
+/*------------------------------------------------------------------
+    Grid layout block
+-------------------------------------------------------------------*/
+.grid_layout_block {
+    margin-left: 0;
+    margin-right: 0
+}
+.grid_layout_block .item {
+    float: none;
+    width: 100%;
+    padding: 0
+}
+.grid_layout_block .item.width33,
+.grid_layout_block .item.width25 {
+    width: 100%;
+    margin: 0 0 10px 0
+}
+.grid_layout_block .item .item_content {
+    width: 100%;
+    left: 0;
+    margin-right: 0
+}
+
+/*------------------------------------------------------------------
+    Shop
+-------------------------------------------------------------------*/
+ul.products li.product {
+    clear: left
+}
+ul.products li.product {
+    width: 48%;
+    margin-right: 2%
+}
+ul.products li.product:nth-child(2n) {
+    float: right;
+    clear: none;
+    margin-right: 0
+}
+div.product .images,
+div.product .summary {
+    width: 100%;
+    float: none;
+    margin-bottom: 30px
+}
+
+/*------------------------------------------------------------------
+    Gallery grid
+-------------------------------------------------------------------*/
+.gallery_grid .gallery_item {
+    clear: left
+}
+.gallery_grid .gallery_item {
+    width: 50%
+}
+.gallery_grid .gallery_item:nth-child(2n) {
+    float: right;
+    clear: none;
+    margin-right: 0
+}
+
+/*------------------------------------------------------------------
+    Posts
+-------------------------------------------------------------------*/
+header.post_header h1 {
+    font-size: 28px;
+    line-height: 36px;
+}

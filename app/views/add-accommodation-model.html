@@ -1,0 +1,100 @@
+<md-dialog ng-cloak style="min-width:70%;">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white;">Accomodation Details</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+                <i ng-click="cancel()" class="mdl-color-text--white material-icons pointer">cancel</i>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <form name="dataForm" ng-submit="save(dataForm,accommodation)" novalidate>
+                 <div layout="row" class="p-10 no-p-t no-p-b no-margin">
+                <div flex-gt-sm="50" flex="100" class="m-t-5 m-b-5">
+                   
+                        <md-input-container class="fullwidth">
+                            <label>Name <sup class="error">*</sup></label>
+                            <input ng-model="accommodation.hotelName" name="hotelName" ng-required="true" pattern="[A-Z,a-z\s]*">
+                            <div ng-messages="dataForm.hotelName.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                    Venue Name is required!
+                                </small>
+                                <small ng-message="pattern" class="error">
+                                    Venue Name is not Valid!
+                                </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex-gt-sm="50" flex="100" class="m-t-5 m-b-5">
+                        <md-input-container class="fullwidth">
+                            <label>Address <sup class="error">*</sup></label>
+                            <input ng-model="accommodation.contactPerson" name="contactPerson" ng-required="true">
+                            <div ng-messages="dataForm.contactPerson.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                            Address is required!
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    </div>
+                      <div layout="row" class="p-10 no-p-t no-p-b no-margin">
+                <div flex-gt-sm="50" flex="100" class="m-t-5 m-b-5">
+                        <md-input-container class="fullwidth">
+                            <label>Phone <sup class="error">*</sup></label>
+                            <input type="tel" ng-model="accommodation.phone" name="phone" ng-required="true" ng-pattern="/^([0-9]{10})+$/" maxlength="10">
+                            <div ng-messages="dataForm.phone.$error" ng-show="dataForm.phone.$touched || submitted">
+                                <small ng-message="required" class="error">
+                                            Phone Number is required!
+                                        </small>
+                                        <small ng-message="pattern" class="error">
+                                            Invalid Phone Number!
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                   <div flex-gt-sm="50" flex="100" class="m-t-5 m-b-5">
+                        <md-input-container class="fullwidth">
+                            <label>Tariff <sup class="error">*</sup></label>
+                            <input ng-model="accommodation.tariff" name="tariff" ng-required="true">
+                            <div ng-messages="dataForm.tariff.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                            Tariff is required!
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    </div>
+                    <div layout="row" class="p-10 no-p-t no-p-b no-margin">
+                <div flex-gt-sm="50" flex="100" class="m-t-5 m-b-5">
+                        <md-input-container class="fullwidth">
+                            <label>Location<sup class="error">*</sup></label>
+                            <input ng-model="accommodation.location" name="location"   ng-required="true">
+                            <div ng-messages="dataForm.location.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                            Address is required!
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                <div flex-gt-sm="50" flex="100" class="m-t-5 m-b-5">
+                        <md-input-container class="fullwidth">
+                            <label>Remarks</label>
+                            <input ng-model="accommodation.remarks" name="remarks" >
+                           
+                        </md-input-container>
+                    </div>
+                </div>
+              
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col t-center">
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                            {{(update!='')?'Update':'Add'}}
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </md-dialog-content>
+</md-dialog>

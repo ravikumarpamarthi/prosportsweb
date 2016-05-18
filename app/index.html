@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pro Sports">
+    <meta name="author" content="Digitele Team">
+    <title>GoldSlam Sports</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.min.css" />
+    <link rel="stylesheet" href="bower_components/ngWig/dist/css/ng-wig.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
+    <link rel="stylesheet" href="bower_components/pikaday/css/pikaday.css" />
+    <link rel="stylesheet" href="bower_components/material-modal/dist/css/material-modal.min.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/angular-material-datetimepicker/css/material-datetimepicker.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-google-places-autocomplete/src/autocomplete.css" />
+    <link rel="stylesheet" href="bower_components/angular-google-places-autocomplete/dist/autocomplete.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+
+    <link href="styles/select2.css" rel="stylesheet">
+    <link href="styles/material-lite-demo.css" rel="stylesheet">
+    <link href="styles/helpers.css" rel="stylesheet">
+    <link href="styles/jquery.bracket.min.css" rel="stylesheet">
+    <link href="styles/mdPickers.css" rel="stylesheet">
+    <link href="styles/custom.css" rel="stylesheet">
+    <!-- endbuild -->
+    <!-- IE Compatibility shims -->
+    <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js""></script>
+  <![endif]-->
+    <!--[if IE]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.7/es5-shim.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/flexie/1.0.3/flexie.min.js"></script>
+  <![endif]-->
+    <!-- end shims -->
+    <style>
+    [ng\:cloak],
+    [ng-cloak],
+    [data-ng-cloak],
+    [x-ng-cloak],
+    .ng-cloak,
+    .x-ng-cloak {
+        display: none !important;
+    }
+    </style>
+</head>
+
+<body ng-cloak ng-app="proSportsApp" ng-controller="MainController">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Add your site or application content here -->
+    <!-- <div class="header">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">proSports</a>
+                </div>
+                <div class="collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#/">Home</a></li>
+                        <li><a ng-href="#/about">About</a></li>
+                        <li><a ng-href="#/">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div ng-view=""></div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        </div>
+    </div> -->
+    <div class="demo-layout mdl-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <!--  <div ui-view="header"></div>
+        <div ui-view="aside"></div> -->
+        <ml-header></ml-header>
+        <ml-sidebar></ml-sidebar>
+        <main class="mdl-layout__content mdl-color--grey-100 page">
+            <div ui-view="content"></div>
+        </main>
+    </div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <!--<script>-->
+    <!--! function(A, n, g, u, l, a, r) {-->
+    <!--A.GoogleAnalyticsObject = l, A[l] = A[l] || function() {-->
+    <!--(A[l].q = A[l].q || []).push(arguments)-->
+    <!--}, A[l].l = +new Date, a = n.createElement(g),-->
+    <!--r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)-->
+    <!--}(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');-->
+    <!--ga('create', 'UA-XXXXX-X');-->
+    <!--ga('send', 'pageview');-->
+    <!--</script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ui-select/dist/select.js"></script>
+    <script src="bower_components/ng-table/dist/ng-table.min.js"></script>
+    <script src="bower_components/ngWig/dist/ng-wig.js"></script>
+    <script src="bower_components/material-design-lite/material.min.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angulargrid/angulargrid.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/pikaday/pikaday.js"></script>
+    <script src="bower_components/pikaday-angular/pikaday-angular.js"></script>
+    <script src="bower_components/material-modal/dist/js/material-modal.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/select2/select2.js"></script>
+    <script src="bower_components/angular-ui-select2/src/select2.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/angular-material-datetimepicker/js/angular-material-datetimepicker.min.js"></script>
+    <script src="bower_components/angular-environment/dist/angular-environment.js"></script>
+    <script src="bower_components/angular-base64/angular-base64.js"></script>
+    <script src="bower_components/angular-google-places-autocomplete/src/autocomplete.js"></script>
+    <script src="bower_components/angular-google-places-autocomplete/dist/autocomplete.min.js"></script>
+    <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js js/demo.min.js -->
+    <script charset="utf-8" src="scripts/lib/modules/chat.js"></script>
+    <script charset="utf-8" src="scripts/lib/modules/select.js"></script>
+    <script charset="utf-8" src="scripts/lib/modules/menu.js"></script>
+    <script charset="utf-8" src="scripts/lib/modules/svg-map.js"></script>
+    <script charset="utf-8" src="scripts/lib/modules/todo.js"></script>
+    <script charset="utf-8" src="scripts/lib/angular-placeholders.js"></script>
+    <script charset="utf-8" src="scripts/lib/angular-mdl.js"></script>
+    <script charset="utf-8" src="scripts/lib/material-modal.min.js"></script>
+    <script charset="utf-8" src="scripts/lib/jquery.bracket.min.js"></script>
+    <script charset="utf-8" src="scripts/lib/mdPickers.js"></script>
+    <!-- endbuild -->
+    <!-- build:js scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/http-service.js"></script>
+    <script src="scripts/services/global.js"></script>
+    <script src="scripts/services/authentication.js"></script>
+    <script src="scripts/services/associations.js"></script>
+    <script src="scripts/services/profile.js"></script>
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/directives/sticky.js"></script>
+    <script src="scripts/directives/ml-header.js"></script>
+    <script src="scripts/directives/ml-sidebar.js"></script>
+    <script src="scripts/controllers/main-controller.js"></script>
+    <script src="scripts/controllers/associations.js"></script>
+    <script src="scripts/controllers/createassociation.js"></script>
+    <script src="scripts/controllers/editassociationowner.js"></script>
+    <script src="scripts/controllers/editassociation.js"></script>
+    <script src="scripts/controllers/createtournament.js"></script>
+    <script src="scripts/controllers/edittournament.js"></script>
+    <script src="scripts/controllers/registertournament.js"></script>
+    <script src="scripts/controllers/viewtournament.js"></script>
+    <script src="scripts/controllers/eventadmin.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/register.js"></script>
+    <script src="scripts/controllers/otp.js"></script>
+    <script src="scripts/controllers/associationslist.js"></script>
+    <script src="scripts/controllers/tournaments.js"></script>
+    <script src="scripts/controllers/leagues.js"></script>
+    <script src="scripts/controllers/tournamentslist.js"></script>
+    <script src="scripts/controllers/forgotpassword.js"></script>
+    <script src="scripts/controllers/myaccount.js"></script>
+    <script src="scripts/controllers/sporting-venue.js"></script>
+    <script src="scripts/controllers/postplayerschedule.js"></script>
+    <script src="scripts/controllers/add-venue.js"></script>
+    <script src="scripts/services/tournaments-service.js"></script>
+    <script src="scripts/services/metadata-service.js"></script>
+    <script src="scripts/controllers/player-preparation-add-player-modal.js"></script>
+    <script src="scripts/controllers/match-schedule.js"></script>
+    <script src="scripts/controllers/match-result.js"></script>
+    <script src="scripts/controllers/event-details-modal.js"></script>
+    <script src="scripts/controllers/edit-sporting-venue.js"></script>
+    <script src="scripts/controllers/player-preparation-add-player-doubles.js"></script>
+    <script src="scripts/controllers/dragdrop.js"></script>
+    <script src="scripts/controllers/player-shuffle-modal.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>

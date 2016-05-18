@@ -1,0 +1,404 @@
+.ml-card-holder.ml-card-holder-first{
+  margin-top: -112px !important;
+}
+.customGridNegMargin20{
+	margin-left:-20px;
+}
+.customGridMarginMix{
+	margin-top:-25px;margin-bottom:-11px;
+}
+.mdl-grid.paddingZero{
+	padding:0px;
+	margin:0px;
+}
+
+.mdl-cell.mdl-cell-m-0{
+	margin:0px;
+}
+
+.p-t-29{
+	padding-top:29px !important;
+}
+
+.mdl-custom_checkbox_input ~ .mdl-checkbox__box-outline{
+	top:9px !important;
+}
+.mdl-custom_checkbox_input_for_text ~ .mdl-checkbox__box-outline{
+	top:7px !important;
+}
+
+.mdl-grid.custom_grid_margin
+{
+	margin-top:-5px;margin-bottom:-40px;
+}
+
+.customPaddingForRemarksInput{
+	padding-top:9px;
+}
+
+table thead tr th.text-left, table tbody tr td.text-left {
+    text-align: left;
+}
+table thead tr th.text-center, table tbody tr td.text-center  {
+    text-align: center;
+}
+table thead tr th.text-right, table tbody tr td.text-right  {
+    text-align: right;
+}
+
+.registertournament td button{
+	margin-top:-7px;
+}
+
+div.select2-result-label{
+	padding:10px !important;
+}
+.bg-image{
+  background-image: url('http://www.vidanta.com/my-vidanta-new-content/imagenes/vidanta%20tennis/Carousel/tennis-banner-3.jpg');
+}
+
+
+.mdl-grid.mdl-grid--no-spacing.neg-m-t-15{
+  margin-top: -115px !important;
+}
+
+.mdl-data-table tbody tr:focus{
+	outline:none;
+}
+
+i:focus{
+	outline: none;
+}
+
+.animate-show {
+  opacity: 1;
+  height:100%;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  opacity: 0;
+  height:0;
+}
+
+md-input-container.md-no-margin{
+	margin:5px 0px;
+}
+
+
+td input.customInputWidth{
+	width:30%;
+}
+
+i.iconFloatLeft{
+    float:left;
+}
+
+.error{
+    color:red;
+    font-size:12px;
+}
+
+md-select:not([disabled]).ng-invalid.ng-dirty .md-select-value{
+    border-bottom:1px solid !important;
+}
+
+
+ md-select-menu.md-default-theme md-option[selected], md-select-menu md-option[selected]{
+    color:white;
+    background-color:gray;
+ }
+ md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-option[selected]:focus{
+    color:white;
+ }
+
+.additionalCss{
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content{
+    background-color:#1976D2;
+}
+@media screen and (max-width: 600px) {
+
+ .additionalCss{
+    margin-top:20px !important;
+ }
+
+}
+
+.img-thumb{
+    max-width:50%;
+    height:auto;
+}
+
+md-toast.md-error-toast-theme div.md-toast-content{
+    color: white !important;
+    background-color: red !important;
+}
+
+md-toast.md-success-toast-theme div.md-toast-content{
+    color: white !important;
+  background-color: #000 !important;
+  text-align: center;
+}
+
+md-toast.md-success-toast-theme div.md-toast-content span {
+  text-align: center;
+  margin: 0 18%;
+}
+
+md-toast.md-error-toast-theme{
+    margin: initial !important;
+    top: initial !important;
+    right: 39% !important;
+}
+md-toast.md-success-toast-theme{
+    margin: initial !important;
+    top: initial !important;
+    right: 39% !important;
+}
+
+.logo-cus {
+  width: 80% !important;
+}
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+  color: #fff !important;
+}
+/*.matches-table tbody tr:hover{
+  background-color: transparent !important;
+}*/
+.matches-table td {
+      border-left: 1px solid rgba(0, 0, 0, 0.04)  !important;
+      border-right: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+.customNegMargin{
+  margin-left: -20px;
+  margin-right: -10px;
+}
+
+#dragndrop {
+  margin-top:10px;
+}
+
+#dragndrop ul{
+  list-style-type:none;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-right:5px;
+}
+
+#dragndrop ul li{
+  padding:5px 5px;
+  margin-bottom:5px;
+  border: 1px solid orange;
+    width: 100%;
+    border-radius: 5px;
+}
+#dragndrop ul li.selected{
+  color:white;
+  padding:5px 5px;
+  background-color:gray;
+  width:100px;
+  border-radius:5px;
+  margin-bottom:5px;
+}
+/**
+table#matchTable tbody:nth-child(even) {background: #CCC;color:white;}
+table#matchTable tbody:nth-child(odd) {background: #aaa;color:white;}
+**/
+
+#matchTable .roundOne{
+  background:#3B7A57;color:white;
+}
+#matchTable .roundTwo{
+  background: #CCCCCC;color:white;
+}
+#matchTable .roundThree{
+  background: #CCCCCC;color:white;
+}
+#matchTable .roundFour{
+  background: #CCCCCC;color:white;
+}
+#matchTable .roundFive{
+  background: #CCCCCC;color:white;
+}
+#matchTable .roundSix{
+  background: #CCCCCC;color:white;
+}
+#matchTable .roundSeven{
+  background: #CCCCCC;color:white;
+}
+#matchTable .roundEight{
+  background: #CCCCCC;color:white;
+}
+#matchTable .semis{
+  background: #1DACD6;color:white;
+}
+#matchTable .finals{
+  background: #87A96B;color:white;
+}
+#matchTable tbody tr:hover{
+  background-color: none !important;
+}
+td {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+
+.multiDemo ul[dnd-list],
+.multiDemo ul[dnd-list] > li {
+    position: relative;
+}
+
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop into it once it's empty
+ */
+
+.multiDemo ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+md-select {
+    margin: 0px;
+    margin-top: -7px;
+}
+
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+
+.multiDemo ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #ddd;
+    min-height: 42px;
+}
+
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+
+.multiDemo ul[dnd-list] li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
+
+/**
+ * Show selected elements in green
+ */
+
+.multiDemo ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.full-width {
+    width: 100%;
+}
+#tournamentBracket1{
+  width:auto !important;
+}
+div.jQBracket .teamContainer .np{
+  visibility: hidden !important;
+  display:none !important;
+}
+
+.border-custom{
+  border-bottom:1px solid #666;
+}
+.p-main{
+  margin-top:10px;margin-bottom:10px;height:400px;overflow:scroll;
+}
+
+.p-wrap{
+  margin:5px;
+}
+.p-head{
+  width:90%;background-color:rgb(16,108,200);color:white;margin:10px;padding:5px 10px;height:40px;
+}
+.p-content{
+  width:90%;border:1px solid rgb(16,108,200); padding:10px 10px;margin-left:10px;margin-top:-10px;min-height:50px;
+}
+.p-placehold{
+  width:180px;border-radius:5px;height:40px;
+}
+
+.last-player-index{
+  position: absolute;
+    width: 100%;
+    /* float: right; */
+    right: 0px;
+    top: 0px;
+    padding:30px;
+    height:500px;
+    overflow:scroll;
+}
+.dd-ul{
+  list-style-type: none;
+  
+  padding:5px;
+  border:1px solid orange;
+}
+.dd-li{
+  padding:10px 0px;
+  background-color:gray;
+  padding:10px;
+  color:white;
+  text-transform:uppercase;
+}
+
+.last-player-index .dd-li{
+  background-color:#FAAF42;
+  margin:2px;
+  padding:10px;
+}
+
+.draw-box{
+  height:500px;overflow:scroll;padding:30px;width:45%
+}
+.m-auto{
+  margin:0 auto;
+}
+.custom-table-padding tbody tr td{
+  padding: 10px 18px 0 0;
+}
+.md-rad-cus-m{
+  margin-right:10px !important;
+}
+.md-rad-cus-m .md-label{
+  margin-left:25px !important;
+}

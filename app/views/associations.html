@@ -1,0 +1,66 @@
+<section class="tables-data">
+    <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <div layout="row">
+                <div flex="30">
+                    <h3 class="mdl-color-text--white ">Associations</h3>
+                </div>
+                <div flex layout-align="end end">
+                    <a href="#/createassociation" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color-text--white mdl-js-ripple-effect">
+                        <i class="material-icons pointer">add</i>Association
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing ">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp m-b-30">
+                    <div class="mdl-card__title hidden">
+                        <h2 class="mdl-card__title-text">{{data.length}} rows</h2>
+                    </div>
+                    <div ng-if="associationsErr" ng-bind-html="associationsErr" class="m-t-20 t-center mdl-color-text--orange">
+                    </div>
+                    <div layout="row">
+                        <div flex="50">
+                        </div>
+                        <div flex="20">
+                            <!-- <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular> -->
+                        </div>
+                        <div flex="40">
+                        </div>
+                    </div>
+                    <table ng-if="!associationsErr && associationList" class="mdl-data-table mdl-js-data-table fullwidth">
+                        <colgroup>
+                            <col class="auto-cell-size p-r-20">
+                        </colgroup>
+                        <thead>
+                            <th class="text-left">Association Name</th>
+                            <th class="text-left">Sport Type</th>
+                            <th class="text-left">Association ID</th>
+                            <th class="text-left">Actions</th>
+                        </thead>
+                        <tbody ng-show="loading">
+                            <tr>
+                                <td colspan="4" class="t-center" >
+                                <md-progress-circular md-diameter="48px" md-mode="indeterminate" class="md-accent m-auto" ng-show="loading"></md-progress-circular>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody ng-init="data=[]" ng-repeat="item in associationList">
+                            <tr ng-click="">
+                                <td>{{item.associationName}}</td>
+                                <td>{{item.sportTypes[0]}}</td>
+                                <td>{{item.associationId}}</td>
+                                <td><i ui-sref="root.editassociationowner({associd:item.docId})" class="mdl-color-text--blue-grey-400 material-icons pointer">mode_edit</i>
+                                    <i ng-click="showConfirm($event,item.docId);" class="mdl-color-text--pink material-icons pointer">delete</i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

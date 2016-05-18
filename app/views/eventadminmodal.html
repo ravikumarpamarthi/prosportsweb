@@ -1,0 +1,478 @@
+<md-dialog ng-cloak id="popupContainer" style="min-width:80%;">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="mdl-color-text--white">45+ Mens Singles</h2>
+                <span flex></span>
+                <i ng-click="answer('useful')" class="mdl-color-text--white material-icons pointer">cancel</i>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="mdl-tabs mdl-js-tabs">
+                <div class="mdl-tabs__tab-bar">
+                    <a href="#tab1-panel" class="mdl-tabs__tab is-active" ng-class="(active=='true')?'is-active':''">Post Players</a>
+                    <a href="#tab2-panel" class="mdl-tabs__tab" ng-init="active='false'" ng-class="(active=='true')?'is-active':''">Prepare Draws</a>
+                    <a href="#tab3-panel" class="mdl-tabs__tab" ng-init="active='false'" ng-click="draw();" ng-class="(active=='true')?'is-active':''">Prepare Schedule</a>
+                </div>
+                <div class="mdl-tabs__panel is-active p-20" id="tab1-panel">
+                    <div ng-show="addOrEditPlayer">
+                        <div class="mdl-grid mdl-grid--no-spacing">
+                            <div class="mdl-cell mdl-cell--6-col">
+                            </div>
+                            <div class="mdl-cell mdl-cell--6-col mdl-cell--middle text-right">
+                                <div>
+                                    <a href="" ng-init="addOrEditPlayer=true" class="mdl-button mdl-js-button  mdl-button--primary mdl-button--raised" ng-click="addoreidtplayertoggle();">
+                                        <i class="material-icons pointer">add</i>Player
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdl-grid ">
+                            <div class="mdl-cell mdl-cell--12-col">
+                                <div class="ml-card-holder ">
+                                    <div class="mdl-card mdl-shadow--1dp ">
+                                        <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                            <colgroup>
+                                                <col class="auto-cell-size p-r-20">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th class="text-left">S.No</th>
+                                                    <th class="mdl-data-table__cell--non-numeric">Player Name</th>
+                                                    <th class="text-left">Date & Entry Time</th>
+                                                    <th class="text-left">Points</th>
+                                                    <th class="text-left">Means of entry</th>
+                                                    <th class="text-left">Withdraw</th>
+                                                    <th class="text-left">Maindraw</th>
+                                                    <th class="text-left">Sign In</th>
+                                                    <th class="text-center">Entry Mode</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody ng-repeat="item in playersList">
+                                                <tr>
+                                                    <td width="30" class="text-left" header="'ng-table/headers/checkbox.html'" header-class="'text-left'">
+                                                        <input type="checkbox" ng-model="checkboxes.items[user.id]" />
+                                                    </td>
+                                                    <td>{{$index+1}}</td>
+                                                    <td class="mdl-data-table__cell--non-numeric">{{item.playerName}}</td>
+                                                    <td>{{item.entryTime}}</td>
+                                                    <td>
+                                                        <input ng-model="user.points" placeholder="Points">
+                                                    </td>
+                                                    <td>
+                                                        <select ng-model="user.meanofentry">
+                                                            <option value="web">Web</option>
+                                                            <option value="email">Email</option>
+                                                            <option value="direct">Direct</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" name="withdraw" value="y">
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" name="maindraw" value="y">
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" name="signin" value="y">
+                                                    </td>
+                                                    <td>
+                                                        <md-radio-group ng-model="data.group1" layout="row">
+                                                            <md-radio-button value="LL" class="md-primary">LL</md-radio-button>
+                                                            <md-radio-button value="WC" class="md-primary">WC</md-radio-button>
+                                                            <md-radio-button value="Q" class="md-primary">Q</md-radio-button>
+                                                        </md-radio-group>
+                                                    </td>
+                                                    <!-- <td>
+                                                        <select ng-model="user.miandraw">
+                                                            <option value="yes">Yes</option>
+                                                            <option value="no">No</option>
+                                                            <option value="wildcard">Wild Card</option>
+                                                            <option value="qualify">Through Qualifying</option>
+                                                        </select>
+                                                    </td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <script type="text/ng-template" id="ng-table/headers/checkbox.html">
+                                            <input class="hidden" type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" />
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mdl-cell mdl-cell--12-col t-center">
+                                <md-button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    Update
+                                </md-button>
+                                <md-button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    Send to draw
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="!addOrEditPlayer">
+                        <div class="p-l-20 p-r-20 p-b-20">
+                            <form action="#">
+                                <div class="mdl-grid mdl-grid--no-spacing">
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <md-input-container class="md-block md-no-margin" flex-gt-sm>
+                                            <label>First name</label>
+                                            <input ng-model="user.firstName">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <md-input-container class="md-block md-no-margin" flex-gt-sm>
+                                            <label>Last Name</label>
+                                            <input ng-model="theMax">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div class="mdl-grid mdl-grid--no-spacing">
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <md-input-container class="md-block md-no-margin" flex-gt-sm>
+                                            <label>User Name</label>
+                                            <input ng-model="user.userName">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <md-input-container class="md-block md-no-margin" flex-gt-sm>
+                                            <label>Password</label>
+                                            <input ng-model="password" type="password">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div class="mdl-grid mdl-grid--no-spacing">
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <md-input-container class="md-block md-no-margin" flex-gt-sm>
+                                            <label>Email</label>
+                                            <input ng-model="user.email">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <md-input-container class="md-block md-no-margin" flex-gt-sm>
+                                            <label>Mobile</label>
+                                            <input ng-model="mobile">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div class="mdl-grid mdl-grid--no-spacing">
+                                    <div class="mdl-cell mdl-cell--6-col no-margin no-padding">
+                                        <md-input-container class="fullwidth md-no-margin">
+                                            <label>Tournament Name</label>
+                                            <md-select ng-model="data.tournamenName">
+                                                <md-option ng-repeat="tournamenName in tournamentsListForAddPlayer" value="{{tournamenName}}">
+                                                    {{tournamenName}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <md-input-container class="fullwidth md-no-margin">
+                                            <label>Event</label>
+                                            <md-select ng-model="data.eventName">
+                                                <md-option ng-repeat="eventName in eventsListForAddPlayer" value="{{eventName}}">
+                                                    {{eventName}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div class="mdl-grid mdl-grid--no-spacing m-t-20">
+                                    <div class="mdl-cell mdl-cell--12-col mdl-cell--middle t-center">
+                                        <a href="" ng-init="addOrEditPlayer=true" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--indigo-A700 mdl-color--raised" ng-click="addoreidtplayertoggle();">Add Player</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-tabs__panel p-20" id="tab2-panel">
+                    <div class="mdl-grid mdl-grid--no-spacing ">
+                        <div class="mdl-cell mdl-cell-m-0 mdl-cell--6-col p-t-20">
+                            <select ui-select2 ng-model="data.condition" data-placeholder="Draw Size">
+                                <option value=""></option>
+                                <option ng-repeat="person in drawSize" value="{{person}}">{{person}}</option>
+                            </select>
+                            
+                        </div>
+                        <div class="mdl-cell mdl-cell-m-0 mdl-cell--6-col p-t-30">
+                            <md-radio-group layout="row">
+                                <md-radio-button value=0 class="md-primary">Manual Draw</md-radio-button>
+                                <md-radio-button value=1 class="md-primary">Seeded Draw</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        
+                    </div>
+                    <div class="mdl-grid mdl-grid--no-spacing m-t-10">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="player1" />
+                                <label class="mdl-textfield__label" for="player1">Player 1</label>
+                                <span class="mdl-textfield__error">Please supply a valid email address.</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="player2" />
+                                <label class="mdl-textfield__label" for="player2">Player 2</label>
+                                <span class="mdl-textfield__error">Please supply a valid email address.</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="player3" />
+                                <label class="mdl-textfield__label" for="player3">Player 3</label>
+                                <span class="mdl-textfield__error">Please supply a valid email address.</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="player4" />
+                                <label class="mdl-textfield__label" for="player4">Player 4</label>
+                                <span class="mdl-textfield__error">Please supply a valid email address.</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="player5" />
+                                <label class="mdl-textfield__label" for="player5">Player 5</label>
+                                <span class="mdl-textfield__error">Please supply a valid email address.</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="player6" />
+                                <label class="mdl-textfield__label" for="player6">Player 6</label>
+                                <span class="mdl-textfield__error">Please supply a valid email address.</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="player7" />
+                                <label class="mdl-textfield__label" for="player7">Player 7</label>
+                                <span class="mdl-textfield__error">Please supply a valid email address.</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="player8" />
+                                <label class="mdl-textfield__label" for="player8">Player 8</label>
+                                <span class="mdl-textfield__error">Please supply a valid email address.</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <ul class="demo-list-icon mdl-list" style="border:2px solid gray;border-radius:5px;">
+                                <li class="mdl-list__item pointer">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="material-icons mdl-list__item-icon">person</i>
+                                        Bryan Cranston
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="material-icons mdl-list__item-icon">person</i>
+                                        Aaron Paul
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="material-icons mdl-list__item-icon">person</i>
+                                        Bob Odenkirk
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="material-icons mdl-list__item-icon">person</i>
+                                        Bob Odenkirk
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="material-icons mdl-list__item-icon">person</i>
+                                        Bob Odenkirk
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="material-icons mdl-list__item-icon">person</i>
+                                        Bob Odenkirk
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="material-icons mdl-list__item-icon">person</i>
+                                        Bob Odenkirk
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="material-icons mdl-list__item-icon">person</i>
+                                        Bob Odenkirk
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mdl-grid mdl-grid--no-spacing m-t-10">
+                         <div class="mdl-cell mdl-cell--12-col t-center">
+                                <md-button class="mdl-button mdl-js-button mdl-button--primary mdl-button--colored mdl-button--raised">
+                                    Prepare Draw
+                                </md-button>
+                                <md-button class="mdl-button mdl-js-button mdl-button--accent mdl-button--colored mdl-button--raised">
+                                    Cancel Draw
+                                </md-button>
+                                <md-button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-button--colored">
+                                    Publish Draw
+                                </md-button>
+                            </div>
+                    </div>
+                </div>
+                <div class="mdl-tabs__panel" id="tab3-panel">
+                    <div class="mdl-grid" ng-show="!resultandassigncourt">
+                        <div class="mdl-cell mdl-cell--12-col t-center m-20">
+                            <div id="tournamentBracket" class="p-20"></div>
+                        </div>
+                    </div>
+                    <div ng-show="resultandassigncourt" layout-align="center center">
+                        <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+                            <md-tab label="Assign Court">
+                                <div layout="row" layout-xs="column" class="layout-padding m-t-0 p-t-0 m-b-0 p-b-0">
+                                    <div flex="30"><span>1<sup>st</sup>Round</span></div>
+                                    <div flex="50"><span>Agassi</span> (vs) <span>Sampras</span></div>
+                                </div>
+                                <div layout="row" layout-xs="column" class="layout-padding m-b-0 p-b-0">
+                                    <div flex="100">
+                                        <md-input-container class="fullwidth ">
+                                            <label>Venue</label>
+                                            <md-select placeholder="Venue" ng-model="data.venue">
+                                                <md-option ng-repeat="venue in venue" value="{{venue.id}}">{{venue.name}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="100">
+                                        <md-input-container class="fullwidth ">
+                                            <label>Court</label>
+                                            <md-select placeholder="Court" ng-model="data.court">
+                                                <md-option ng-repeat="court in courtsList" value="{{court}}">{{court}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="20" class="p-t-20">
+                                        <md-datepicker ng-model="myDate" md-placeholder="Date"></md-datepicker>
+                                    </div>
+                                </div>
+                                <div layout="row" layout-xs="column" class="layout-padding m-t-0 p-t-0">
+                                    <div flex>
+                                        <md-input-container class="fullwidth">
+                                            <label>Time</label>
+                                            <input ng-model="user.time">
+                                        </md-input-container>
+                                    </div>
+                                    <div flex>
+                                        <md-input-container class="fullwidth">
+                                            <label>Condition</label>
+                                            <md-select ng-model="data.cond">
+                                                <md-option ng-repeat="cond in condition" value="{{cond}}">
+                                                    {{cond}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row" layout-xs="column" class="layout-padding m-t-0 p-t-0">
+                                    <div flex>
+                                        <md-input-container class="fullwidth">
+                                            <label>Remarks</label>
+                                            <input ng-model="user.remarks">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row" class="p-b-20" layout-xs="column">
+                                    <div flex class="t-center" flex-offset="45">
+                                        <a ng-click="matchDetails();" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">Submit</a>
+                                    </div>
+                                </div>
+                            </md-tab>
+                            <md-tab label="Result">
+                                <md-content class="md-padding t-center">
+                                    <table class="mdl-data-table mdl-js-data-table fullwidth" aria-describedby="tblDesc" tabindex="0">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center"><span>1<sup>st</sup>Round</span></th>
+                                                <th class="text-center">1<sup>st</sup> Set</th>
+                                                <th class="text-center">2<sup>nd</sup> Set</th>
+                                                <th class="text-center">3<sup>rd</sup> Set</th>
+                                                <th class="text-center">4<sup>th</sup> Set</th>
+                                                <th class="text-center">5<sup>th</sup> Set</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th style="background-color:#FAFAFA;border-top:1px solid #E1E1E1;text-align:left;"><i class="mdl-color-text--blue-grey-400 material-icons">account_circle</i> <span style="position:relative;top:-5px;">Agassi</span> </th>
+                                                <td class="text-center">
+                                                    <input type="text" value="6" class="text-center customInputWidth" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="text" value="4" class="text-center customInputWidth" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="text" value="" class="text-center customInputWidth" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="text" value="" class="text-center customInputWidth" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="text" value="" class="text-center customInputWidth" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="background-color:#FAFAFA;border-top:1px solid #E1E1E1;text-align:left;"><i class="mdl-color-text--blue-grey-400 material-icons">account_circle</i> <span style="position:relative;top:-5px;">Sampras</span></th>
+                                                <td class="text-center">
+                                                    <input type="text" value="4" class="text-center customInputWidth" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="text" value="5" class="text-center customInputWidth" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="text" value="" class="text-center customInputWidth" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="text" value="" class="text-center customInputWidth" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="text" value="" class="text-center customInputWidth" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="mdl-grid">
+                                        <div class="mdl-cell mdl-cell--9-col">
+                                            <md-input-container class="fullwidth">
+                                            <label>Remarks</label>
+                                            <input ng-model="user.remarks">
+                                        </md-input-container>
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--2-col m-t-30">
+                                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+                                                <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" ng-model="hospitality" ng-init="hospitality=false" />
+                                                <span class="mdl-checkbox__label">Match Over?</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-grid">
+                                        <div class="mdl-cell mdl-cell--12-col">
+                                            <md-input-container class="fullwidth">
+                                            <label>Match Format</label>
+                                            <textarea readonly>text should come from db if its filled in events tab in edit tournament</textarea>
+                                        </md-input-container>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <div class="mdl-grid">
+                                        <div class="mdl-cell mdl-cell--12-col t-center">
+                                            <a ng-click="matchDetails();draw();" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">Done</a>
+                                        </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" class="hidden">
+            <span flex></span>
+            <md-button ng-click="answer('useful')" style="margin-right:20px;">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

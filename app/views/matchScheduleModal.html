@@ -1,0 +1,96 @@
+<md-dialog ng-cloak style="min-width:70%;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white;">Match Schedule</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+            <i ng-click="cancel()" class="mdl-color-text--white material-icons pointer">cancel</i>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <form name="dataForm" ng-submit="schedule(dataForm,data)" novalidate>
+            <div layout="row" layout-xs="column" class="layout-padding m-t-0 p-t-0 m-b-0 p-b-0">
+                <div flex="30"><span>{{match.roundName}}</span></div>
+                <div flex="50"><span>{{match.teams[0].name}}</span> (vs) <span>{{match.teams[1].name}}</span></div>
+            </div>
+            <div layout="row" layout-xs="column" class="p-l-10 p-r-10">
+                <div flex="50">
+                    <md-input-container class="fullwidth ">
+                        <label>Court <sup class="error">*</sup></label>
+                        <md-select placeholder="Venue" name="courtName" required ng-model="data.court">
+                            <md-option ng-repeat="court in courts" value="{{court.venueDocId+','+court.courtId}}">{{court.venueName+'--'+court.courtName}}</md-option>
+                        </md-select>
+                        <div ng-messages="dataForm.courtName.$error" ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                            Venue Name is required!
+                                </small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="50">
+                    <md-input-container class="fullwidth ">
+                        <label>Date<sup class="error">*</sup></label>
+                        <input class="mdl-textfield__input" type="text" pikaday="dob" format="DD-MMM-YYYY" year-range=[1920,2016] on-select="onPikadaySelect(pikaday)" theme="material-lite" ng-model="data.date" name="eventStartDate" required/>
+                        <div ng-messages="dataForm.eventStartDate.$error" ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                            Event Start Date is required!
+                                </small>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column"  class="p-l-10 p-r-10">
+                <div flex="20" class="full-width" style="margin-top:-30px;">
+                    <label style="position:relative;top:20px;" class="p-l-30 p-b-0" >Time<sup class="error">*</sup></label>
+                    <mdp-time-picker class="fullwidth" ng-model="data.time" name="time" placeholder="Start Time" required>
+                        <div ng-messages="dataForm.time.$error" ng-show="submitted">
+
+                            <small ng-message="required" class="error">
+                                Time is required!
+                    </small>
+                        </div>
+                    </mdp-time-picker>
+                </div>
+                <div flex="30">
+                    <md-input-container class="fullwidth">
+                        <label>Condition</label>
+                        <md-select placeholder="Condition" name="condition" ng-model="data.condition" required>
+                            <md-option ng-repeat="condition in conditions" value="{{condition.value}}">
+                                {{condition.name}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="dataForm.condition.$error" ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                            Condition is required!
+                                </small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="50">
+                    <md-input-container class="fullwidth">
+                        <label>Remarks</label>
+                        <input ng-model="data.remarks" name="remarks">
+                    </md-input-container>
+                </div>
+            </div>
+            <!-- <div layout="row" layout-xs="column" class="p-l-10 p-r-10">
+                <div flex="100">
+                    <md-input-container class="fullwidth">
+                        <label>Remarks</label>
+                        <input ng-model="data.remarks" name="remarks">
+                    </md-input-container>
+                </div>
+            </div> -->
+          
+            <div layout="row" class="p-b-20" layout-xs="column">
+                <div flex class="t-center" flex-offset="45">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                        Schedule
+                    </button>
+                </div>
+            </div>
+        </form>
+    </md-dialog-content>
+</md-dialog>

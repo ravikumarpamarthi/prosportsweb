@@ -1,0 +1,82 @@
+<md-dialog ng-cloak style="min-width:50%;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white;">Add Court</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+            <i ng-click="cancel()" class="mdl-color-text--white material-icons pointer">cancel</i>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <form name="addCourtForm" ng-submit="save(addCourtForm,data);" novalidate>
+            <div layout="row" class="p-10 no-p-t no-p-b no-margin">
+                <div flex-gt-sm="50" flex="100" class="m-t-20 m-b-20">
+                    <md-input-container class="fullwidth no-m-b">
+                        <label>Court Name<sup class="error">*</sup></label>
+                        <input ng-model="data.courtName" name="courtName" ng-required="true">
+                        <div ng-messages="addCourtForm.courtName.$error" ng-show="submitted">
+                            <small ng-message="required" class="error">Court Name is required!</small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex-gt-sm="50" flex="100" class="m-t-20 m-b-20">
+                    <md-input-container class="fullwidth no-m-b">
+                        <label>Court Id<sup class="error">*</sup></label>
+                        <input ng-model="data.courtId" name="address" ng-required="true">
+                        <div ng-messages="addCourtForm.address.$error" ng-show="submitted">
+                            <small ng-message="required" class="error">Court Id is required!</small>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" class="p-10 no-p-t no-p-b no-margin">
+                <div flex-gt-sm="50" flex="100">
+                    <md-input-container class="fullwidth no-margin">
+                        <label>Court Type<sup class="error">*</sup></label>
+                        <md-select ng-model="data.courtType" name="courttype" ng-required="true" placeholder="Court Type">
+                            <md-option ng-repeat="type in courtType" value="{{type.name}}">
+                                {{type.name}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="addCourtForm.courttype.$error" ng-show="submitted" class="no-m no-p">
+                            <small ng-message="required">Court Type is required!</small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex-gt-sm="50" flex="100">
+                    <md-input-container class="fullwidth no-margin">
+                        <label>Lights Availability<sup class="error">*</sup></label>
+                        <md-select ng-model="data.lightsAvalibility" name="lights" ng-required="true" placeholder="Lights Availability">
+                            <md-option ng-repeat="light in lights" value="{{light.name}}">
+                                {{light.name}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="addCourtForm.lights.$error" ng-show="submitted" class="no-m no-p">
+                            <small ng-message="required">Lights Availability is required!</small>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" class="p-10 no-p-t no-p-b no-margin">
+                <div flex="100 ">
+                    <md-input-container class="fullwidth m-t-0">
+                        <label>Remarks</label>
+                        <textarea rows="5" ng-model="data.remarks" name="remarks" ></textarea>
+                        <div ng-messages="addCourtForm.remarks.$error" ng-show="submitted">
+                            <small ng-message="required" class="error">Remarks is required!</small>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col t-center">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </form>
+    </md-dialog-content>
+</md-dialog>

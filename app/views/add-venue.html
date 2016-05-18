@@ -1,0 +1,170 @@
+<section class="tables-data">
+  <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <div layout="row">
+                <div flex="30">
+                    <h3 class="mdl-color-text--white ">Add Sporting Venue</h3>
+                </div>
+                <div flex layout-align="end end">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing m-t-10">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp m-b-30">
+                    <div class="p-20">
+                        <form name="courtForm" class="m-t-20">
+                            <div layout="row" layout-xs="column">
+                                <div flex>
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Venue<sup class="error">*</sup></label>
+                                        <input ng-model="data.name" name="venue" ng-required="true">
+                                        <div ng-messages="courtForm.venue.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Venue is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                <md-input-container class="fullwidth no-m-tb ">
+                                        <label>Sport Type<sup class="error">*</sup></label>
+                                        <md-select ng-model="data.sportTypes" name="sporttype" ng-required="true">
+                                            <md-option ng-repeat="sport in sportType" value="{{sport.value}}">
+                                                {{sport.name | uppercase}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="courtForm.sporttype.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Sport Type is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex>
+                                     <md-input-container class="fullwidth">
+                                        <label>Phone<sup class="error">*</sup></label>
+                                        <input type="tel" ng-model="data.phone" name="phone"  ng-pattern="/^([0-9]{10})+$/" minlength="10" maxlength="10" ng-required="true">
+                                        <div ng-messages="courtForm.phone.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                                Phone Number is required!
+                                            </small>
+                                            <small ng-message="pattern" class="error">
+                                                Invalid Phone Number !
+                                            </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="fullwidth">
+                                        <label>Working Hours<sup class="error">*</sup></label>
+                                        <input ng-model="data.workingHours" name="workinghours" ng-required="true">
+                                        <div ng-messages="courtForm.workinghours.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Working Hours required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex>
+                                    <md-input-container class="fullwidth">
+                                        <label>Main Activity</label>
+                                        <input ng-model="data.mainActivity" name="mainactivity" ng-required="true">
+                                        <div ng-messages="courtForm.mainactivity.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Main Activity is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="fullwidth">
+                                        <label>Email<sup class="error">*</sup></label>
+                                        <input ng-model="data.email" name="email" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" ng-required="true">
+                                        <div ng-messages="courtForm.email.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                                Email is required!
+                                            </small>
+                                            <small ng-message="pattern" class="error">
+                                                 Invalid Email!
+                                            </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex>
+                                <md-input-container class="fullwidth">
+                                        <label>Location<sup class="error">*</sup></label>
+                                        <input ng-model="data.location" g-places-autocomplete name="location" ng-required="true">
+                                        <div ng-messages="courtForm.location.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Location is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row">
+                                <div flex="90">
+                                    <h4 class="m-b-30">Court Details:</h4>
+                                </div>
+                                <div flex>
+                                    <a ng-click="showAdvanced($event);" class="mdl-button mdl-js-button  mdl-button--raised mdl-button--blue">
+                                        <i class="material-icons">add</i>Court
+                                    </a>
+                                </div>
+                            </div>
+                            <div layout="row">
+                                <div flex="100">
+                                    <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                        <colgroup>
+                                            <col class="auto-cell-size p-r-20">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="mdl-data-table__cell--non-numeric">Court Name</th>
+                                                <th class="text-center">Court Id</th>
+                                                <th class="text-center">Court Type</th>
+                                                <th class="text-center">Lights Availability</th>
+                                                <th class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="item in data.courts">
+                                            <tr>
+                                                <td class="mdl-data-table__cell--non-numeric">{{item.courtName}}</td>
+                                                <td class="text-center">{{item.courtId}}</td>
+                                                <td class="text-center">{{item.courtType}}</td>
+                                                <td class="text-center">{{item.lights}}</td>
+                                                <td class="text-center">
+                                                    <i ng-click="showAdvanced($event,item,$index);" class="mdl-color-text--blue-grey-400 material-icons pointer">mode_edit</i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                         <tbody ng-if="data.courts.length==0">
+                                            <tr>
+                                                <td colspan="5" align="center">Please add courts</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="m-t-20 t-center">
+                                <a ng-click="addVenue(courtForm);" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--indigo-A700 mdl-color--raised">Submit</a>
+                                <a ui-sref="root.courtadmin" class="mdl-button mdl-js-button mdl-button--default mdl-js-ripple-effect ">Cancel</a>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

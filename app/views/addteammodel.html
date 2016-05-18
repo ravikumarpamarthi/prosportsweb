@@ -1,0 +1,49 @@
+<md-dialog ng-cloak style="min-width:50%;">
+  <md-toolbar class="mdl-color--grey-700">
+            <div class="md-toolbar-tools">
+                <h2 style="color:white;">Add Member</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+                <i ng-click="cancel()" class="mdl-color-text--white material-icons pointer">cancel</i>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <form name="addTeamForm"  ng-submit="answer(addTeamForm,data)" novalidate >
+                <div layout="row" class="m-t-20 p-20">
+                    <div flex>
+                        <md-input-container class="fullwidth">
+                            <label>Name<sup class="error">*</sup></label>
+                            <input ng-model="data.name" name="name" ng-required="true">
+                            <div ng-messages="addTeamForm.name.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                            Name is required!
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="fullwidth">
+                            <label>Designation<sup class="error">*</sup></label>
+                            <input ng-model="data.designation" name="designation" ng-required="true">
+                            <div ng-messages="addTeamForm.designation.$error" ng-show="submitted">
+                                <small ng-message="required" class="error">
+                                            Designation is required!
+                                        </small>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col t-center">
+                      <button type="submit"
+                              class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange mdl-color-text--white mdl-js-ripple-effect">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </md-dialog-content>
+</md-dialog>

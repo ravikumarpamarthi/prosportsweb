@@ -1,0 +1,94 @@
+<section>
+  <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <h3 class="mdl-color-text--white m-t-20 m-b-5">Create Association</h3>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone no-p-l">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp">
+                    <div class="mdl-card__title hidden">
+                        <h2 class="mdl-card__title-text">Example one</h2>
+                    </div>
+                    <div class="p-30">
+                        <form name="createAssociationForm" novalidate role="form">
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100" class="m-b-20">
+                                    <md-input-container class="fullwidth no-m-tb ">
+                                        <label>Sport Type<sup class="error">*</sup></label>
+                                        <md-select ng-model="data.sportTypes" name="sporttype" ng-required="true" placeholder="Sport Type<sup class='error'>*</sup>">
+                                            <md-option ng-repeat="sport in sportType" value="{{sport.value}}">
+                                                {{sport.value}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="createAssociationForm.sporttype.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Sport Type is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Association Name<sup class="error">*</sup></label>
+                                        <input ng-model="data.associationName" name="associationname" ng-required="true" pattern="[A-Z,a-z\s]*">
+                                        <div ng-messages="createAssociationForm.associationname.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Association Name is required!
+                                        </small>
+                                        <small ng-message="pattern" class="error">
+                                            Association Name is not valid !
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Association ID<sup class="error">*</sup></label>
+                                        <input ng-model="data.associationId" name="associationid" ng-required="true">
+                                        <div ng-messages="createAssociationForm.associationid.$error" ng-show="submitted">
+                                            <small ng-message="required">
+                                            Association ID is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Assign Admin<sup class="error">*</sup></label>
+                                        <md-select ng-model="data.adminDocId" name="associationadmin" ng-required="true" placeholder="Assign Admin<sup class='error'>*</sup>">
+                                            <md-option ng-repeat="associationAdmin in people" value="{{associationAdmin.docId}}">
+                                              {{associationAdmin.name}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="createAssociationForm.associationadmin.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Assign Admin is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell mdl-cell-m-0 mdl-cell--12-col t-center">
+                                    <div class="m-t-20">
+                                        <div layout="row" layout-align="center center">
+                                            <div>
+                                                <md-button ng-click="submit(data)" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect" ng-disabled="disable">Create</md-button>
+                                            </div>
+                                            <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                            <a ui-sref="root.associations" class="mdl-button mdl-js-button mdl-button--default mdl-js-ripple-effect " ng-disabled="disable">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

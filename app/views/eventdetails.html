@@ -1,0 +1,165 @@
+<section class="tables-data">
+    <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <div layout="row">
+                <div flex="30">
+                    <h3 class="mdl-color-text--white ">Event-Details</h3>
+                </div>
+            </div>
+            <div class="mdl-grid mdl-grid--no-spacing hidden">
+                <div class="mdl-cell mdl-cell--6-col">
+                    <h3 class="mdl-color-text--white ">Tournaments</h3>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--middle text-right">
+                    <div class="m-t-20">
+                        <a href="#/createtournament" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color-text--white mdl-js-ripple-effect">
+                            <i class="material-icons pointer">add</i>Create Tournament
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing m-t-10">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp m-b-30">
+                    <div class="mdl-card__title hidden">
+                        <h2 class="mdl-card__title-text">{{data.length}} rows</h2>
+                    </div>
+                    <div layout="row">
+                        <div flex="50">
+                        </div>
+                        <div flex="20">
+                            <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                        </div>
+                        <div flex="40">
+                        </div>
+                    </div>
+                    <div class="mdl-tabs mdl-js-tabs" >
+                        <div class="mdl-tabs__tab-bar">
+                            <a href="#tab1-panel" class="mdl-tabs__tab is-active" ng-class="(active=='true')?'is-active':''" >Schedule</a>
+                            <a href="#tab2-panel" class="mdl-tabs__tab" ng-init="active='false'" ng-class="(active=='true')?'is-active':''" >Players</a>
+                        </div>                        
+                        <div class="mdl-tabs__panel is-active p-20" id="tab1-panel" >
+                            <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+                               
+                                <md-tab label="Schedule">
+                                    <md-content class="t-center" style="overflow: inherit; padding-bottom:2%">
+                                        <table class="m-t-20 matches-table mdl-data-table mdl-js-data-table" ng-repeat="playerPerTeam in playersToFilter() | filter:filterTeams | orderBy:'-roundNo'">
+                                            <colgroup>
+                                                <col class="auto-cell-size">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th class="mdl-data-table__cell--non-numeric full-width" colspan="5">{{playerPerTeam.roundName}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody ng-repeat="match in matches | filter:{roundName: playerPerTeam.roundName}" class="fullwidth">
+                                                <tr ng-class="{roundOne:(match.roundName=='R1'),semis:(match.roundName=='SEMIS'),finals:(match.roundName=='FINALS')}" ng-if="match.status!='YET_TO_SCHEDULE'">
+                                                    <td class="mdl-data-table__cell--non-numeric"> {{match.teams[0].name}}</td>
+                                                    <td>
+                                                        {{match.teams[0].position}}
+                                                    </td>
+                                                    <td rowspan="2" style="vertical-align:middle;">
+                                                        <p ng-if="match.status=='COMPLETED'"> {{(match.teams[0].status=='WINNER')?match.teams[0].name:''}} {{(match.teams[1].status=='WINNER')?match.teams[1].name:''}}
+                                                        </p>
+                                                        <p ng-if="match.status=='COMPLETED'">
+                                                            {{getScores(match.teams)}}
+                                                        </p>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        Venue
+                                                    </td>
+                                                    <td class="text-center">
+                                                        DATE & TIME
+                                                    </td>
+                                                </tr>
+                                                <tr ng-if="match.status!='YET_TO_SCHEDULE'">
+                                                    <td class="mdl-data-table__cell--non-numeric">{{match.teams[1].name}}</td>
+                                                    <td>
+                                                        {{match.teams[1].position}}
+                                                    </td>
+                                                    <td>
+                                                        {{match.court.courtName}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{match.startTime}}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-content>
+                                </md-tab>
+                                 <md-tab label="Draws" ng-click="draw()">
+                                    <md-content class="t-center">
+                                        <div id="tournamentBracket1"></div>
+                                    </md-content>
+                                </md-tab>
+                                
+                            </md-tabs>                           
+                        </div>
+                        <div class="mdl-tabs__panel " id="tab2-panel">
+                            <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+                                <md-tab label="Entries Received">
+                                    <md-content class="md-padding t-center">
+                                        <div class="ml-card-holder ">
+                                            <div class="mdl-card mdl-shadow--1dp ">
+                                                <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                                    <colgroup>
+                                                        <col class="auto-cell-size p-r-20">
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-left">S.No</th>
+                                                            <th class="text-left">Name</th>
+                                                            <th class="text-left">Points</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody ng-repeat="item in recievedEntries | orderBy:'-points'">
+                                                        <tr>
+                                                            <td>{{$index+1}}</td>
+                                                            <td class="mdl-data-table__cell--non-numeric">{{item.playerName}}</td>
+                                                            <td>{{item.points}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </md-content>
+                                </md-tab>
+                                <md-tab label="Direct Entries">
+                                    <md-content class="md-padding t-center">
+                                        <div class="ml-card-holder ">
+                                            <div class="mdl-card mdl-shadow--1dp ">
+                                                <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                                    <colgroup>
+                                                        <col class="auto-cell-size p-r-20">
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-left">S.No</th>
+                                                            <th class="text-left">Name</th>
+                                                            <th class="text-left">Points</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody ng-repeat="item in directEntries | orderBy:'-points'">
+                                                        <tr>
+                                                            <td>{{$index+1}}</td>
+                                                            <td class="mdl-data-table__cell--non-numeric">{{item.playerName}}</td>
+                                                            <td>{{item.points}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </md-content>
+                                </md-tab>
+                            </md-tabs>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

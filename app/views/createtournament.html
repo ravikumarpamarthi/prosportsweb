@@ -1,0 +1,177 @@
+<section>
+  <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <h3 class="mdl-color-text--white m-t-20 m-b-5">Create Tournament</h3>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-cell mdl-cell-m-0 mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone no-p-l">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp">
+                    <div class="mdl-card__title hidden">
+                        <h2 class="mdl-card__title-text">Example one</h2>
+                    </div>
+                    <div class="p-30">
+                        <form name="createTournamentForm" novalidate role="form">
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100" >
+                                    <md-input-container class="fullwidth">
+                                        <label>Sport Type <sup class="error">*</sup></label>
+                                        <md-select ng-model="data.sportType" name="sporttype" ng-required="true"  placeholder="Sport Type">
+                                            <md-option ng-repeat="sport in sportTypes" value="{{sport.value}}">
+                                                {{sport.name}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="createTournamentForm.sporttype.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Sport Type is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100" >
+                                    <md-input-container class="fullwidth">
+                                        <label>Association <sup class="error">*</sup></label>
+                                        <md-select ng-model="data.associationDocId" name="association" ng-required="true" placeholder="Association">
+                                            <md-option ng-repeat="association in associations" value="{{association.docId}}">
+                                                {{association.associationName}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="createTournamentForm.association.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Association is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth">
+                                        <label>Series</label>
+                                        <md-select ng-model="data.series" name="series"placeholder="Series">
+                                            <md-option ng-repeat="series in seriesData" value="{{series.value}}">
+                                                {{series.name}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="createTournamentForm.series.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Series is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth">
+                                        <label>Tournament Name <sup class="error">*</sup></label>
+                                        <input ng-model="data.tournamentName" name="tournamentname" ng-required="true" pattern="[A-Z,a-z\s]*">
+                                        <div ng-messages="createTournamentForm.tournamentname.$error" ng-show="submitted">
+                                            <small ng-message="required">
+                                            Tournament Name is required!
+                                        </small>
+                                        <small ng-message="pattern" class="error">
+                                            Association Name is not valid !
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth">
+                                        <label>Tournament ID <sup class="error">*</sup></label>
+                                        <input ng-model="data.tournamentId" name="tournamentid" ng-required="true">
+                                        <div ng-messages="createTournamentForm.tournamentid.$error" ng-show="submitted">
+                                            <small ng-message="required">
+                                            Tournament ID is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Location</label>
+                                        <input ng-model="data.location" g-places-autocomplete name="location" ng-required="true">
+                                        <div ng-messages="createTournamentForm.location.$error" ng-show="submitted">
+                                            <small ng-message="required">
+                                            Location is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Assign Admin<sup class="error">*</sup></label>
+                                        <md-select ng-model="data.adminDocId" name="admin" ng-required="true" placeholder="Assign Admin">
+                                            <md-option ng-repeat="admin in profiles" value="{{admin.docId}}">
+                                                {{admin.name}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="createTournamentForm.association.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Admin is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column ">
+                                <div flex-gt-sm="50" flex="100" >
+                                    <md-input-container class="fullwidth">
+                                        <label>Primary Email<sup class="error">*</sup></label>
+                                        <input ng-model="data.email" name="primaryemail" ng-required="true" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" type="email">
+                                        <div ng-messages="createTournamentForm.primaryemail.$error" ng-show="createTournamentForm.primaryemail.$touched || submitted " class="no-m no-p">
+                                            <small ng-message="required">
+                                            Primary Email is required!
+                                        </small>
+                                        <small ng-message="pattern" class="error">
+                                            Invalid Email!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth">
+                                        <label>Status<sup class="error">*</sup></label>
+                                        <md-select ng-model="data.status" name="status" ng-required="true" placeholder="Status">
+                                            <md-option ng-repeat="tournamentStatus in status" value="{{tournamentStatus}}">
+                                                {{tournamentStatus}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="createTournamentForm.status.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Status is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+
+
+                          <div>
+
+                          </div>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell mdl-cell-m-0 mdl-cell--5-col"></div>
+                                <div class="mdl-cell mdl-cell-m-0 mdl-cell--7-col">
+                                    <div class="m-t-20">
+                                    <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                        <button ng-click="submit(data)" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                                            Create
+                                        </button>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

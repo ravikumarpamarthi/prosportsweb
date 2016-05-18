@@ -1,0 +1,206 @@
+<section>
+  <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <h3 class="mdl-color-text--white m-t-20 m-b-5">Edit - {{data.associationName}} </h3>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-cell mdl-cell-m-0 mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone no-p-l">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp">
+                    <div class="mdl-card__title hidden">
+                        <h2 class="mdl-card__title-text">Example one</h2>
+                    </div>
+                    <div class="p-30">
+                        <form name="editAssociationForm" novalidate role="form">
+                            <div layout="row" class="m-b-30">
+                                <div flex>
+                                    <h4>Association Details</h4>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100" class="m-b-20">
+                                    <md-input-container class="fullwidth no-m-tb ">
+                                        <label>Sport Type<sup class="error">*</sup></label>
+                                        <md-select ng-model="data.sportTypes[0]" name="sporttype" ng-required="true" placeholder="Sport Type" disabled>
+                                            <md-option ng-repeat="sport in sportType" value="{{sport.value}}">
+                                                {{sport.value}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="editAssociationForm.sporttype.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Sport Type is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Association Name<sup class="error">*</sup></label>
+                                        <input ng-model="data.associationName" name="associationname" ng-required="true" readonly >
+                                        <div ng-messages="editAssociationForm.associationname.$error" ng-show="submitted">
+                                            <small ng-message="required" class="error">
+                                            Association Name is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Association ID<sup class="error">*</sup></label>
+                                        <input ng-model="data.associationId" name="associationid" ng-required="true" readonly>
+                                        <div ng-messages="editAssociationForm.associationid.$error" ng-show="submitted">
+                                            <small ng-message="required">
+                                            Association ID is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb">
+                                        <label>Assign Admin<sup class="error">*</sup></label>
+                                        <md-select ng-model="data.adminDocId" name="associationadmin" ng-required="true" placeholder="Assign Admin" ng-change="onChange(data.adminDocId)" disabled>
+                                            <md-option ng-repeat="associationAdmin in people" value="{{associationAdmin.docId}}">
+                                                {{associationAdmin.firstName}} {{associationAdmin.lastName}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="editAssociationOwnerForm.associationadmin.$error" ng-show="submitted" class="no-m no-p">
+                                            <small ng-message="required">
+                                            Assign Admin is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth p-t-5 additionalCss">
+                                        <label>Address<sup class="error">*</sup></label>
+                                        <input ng-model="data.address" name="address" ng-required="true">
+                                        <div ng-messages="editAssociationForm.address.$error" ng-show="submitted">
+                                            <small ng-message="required">
+                                            Address is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Registration No</label>
+                                        <input ng-model="data.registrationNo" name="registrationid" >
+                                        <div ng-messages="editAssociationForm.registrationid.$error" ng-show="submitted">
+                                            <small ng-message="required">
+                                            Registration No is required!
+                                        </small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column">
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Email<sup class="error">*</sup></label>
+                                        <input ng-model="data.email" name="email" ng-required="true" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+                                        <div ng-messages="editAssociationForm.email.$error" ng-show="submitted">
+                                            <small ng-message="required">Email is required!</small>
+                                          <small ng-message="pattern">Please enter a valid email address!</small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Website</label>
+                                        <input ng-model="data.website" name="website" >
+                                        <div ng-messages="editAssociationForm.website.$error" ng-show="submitted">
+                                            <small ng-message="required">
+                                            Website is required!
+                                        </small>
+
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row" layout-xs="column" class="m-t-10">
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Phone No</label>
+                                        <input ng-model="data.phone" name="phone" ng-pattern="/^([0-9]{10})+$/" minlength="10" maxlength="10" >
+                                        <div ng-messages="editAssociationForm.phone.$error" ng-show="editAssociationForm.phone.$touched || submitted">
+                                          
+                                        <small ng-message="pattern">Not a valid phone no!</small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div flex-gt-sm="50" flex="100">
+                                    <md-input-container class="fullwidth no-m-tb p-t-5">
+                                        <label>Mobile<sup class="error">*</sup></label>
+                                        <input maxlength="10" ng-model="data.mobile" name="mobile" ng-pattern="/^([0-9]{10})+$/" minlength="10" maxlength="10" ng-required="true">
+                                        <div ng-messages="editAssociationForm.mobile.$error" ng-show="submitted">
+                                            <small ng-message="required">Mobile is required!</small>
+                                            <small ng-message="pattern">Not a valid mobile!</small>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row">
+                                <div flex>
+                                    <h4 class="m-b-30">Member Details</h4>
+                                </div>
+                                <div flex layout-align="end center">
+                                    <a ng-click="showAdvanced($event)" class="mdl-button mdl-js-button  mdl-button--raised mdl-button--blue">
+                                        <i class="material-icons">add</i>Add More
+                                    </a>
+                                </div>
+                            </div>
+                            <div layout="row">
+                                <div flex="100">
+                                    <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                        <colgroup>
+                                            <col class="auto-cell-size p-r-20">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left">Name</th>
+                                                <th class="text-left">Designation</th>
+                                                <th class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="team in data.members">
+                                            <tr>
+                                                <td class="mdl-data-table__cell--non-numeric">{{team.name}}</td>
+                                                <td class="text-left">{{team.designation}}</td>
+                                                <td class="text-center">
+                                                    <i ng-click="showAdvanced($event,team,$index)" class="mdl-color-text--blue-grey-400 material-icons pointer ">mode_edit</i>
+                                                    <i class="mdl-color-text--blue-grey-400 material-icons pointer hidden">delete</i></td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody ng-if="data.members.length==0">
+                                            <tr>
+                                                <td colspan="3" align="center" class="mdl-data-table__cell--non-numeric">No team members avilable</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell mdl-cell-m-0 mdl-cell--5-col"></div>
+                                <div class="mdl-cell mdl-cell-m-0 mdl-cell--7-col">
+                                    <div class="m-t-20">
+                                      <button ng-click="submit(data, associationTeamDetails)"
+                                              class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange mdl-color-text--white mdl-js-ripple-effect" ng-disabled="disable">
+                                            Update
+                                        </button>
+                                        <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                        <a ui-sref="root.associationslist" class="mdl-button mdl-js-button mdl-button--default mdl-js-ripple-effect " ng-disabled="disable" >Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,39 @@
+<header class="demo-header mdl-layout__header mdl-color--orange mdl-color-text--grey-600">
+    <div class="mdl-layout__header-row">
+        <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button"><i class="material-icons"></i></div>
+        <span class="mdl-layout-title" ng-if="authentication == null">
+          <a ui-sref="root.createassociation">
+            <img src="img/FashionNews.svg" class="logo-cus">
+          </a></span>
+        <h3 class="mdl-layout-spacer mdl-color-text--white" >
+<!-- ng-bind="pageTitle" -->
+      </h3>
+        <a ui-sref="root.login" ng-if="authentication == null" class="hidden mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+        Home
+        </a>
+        <a style="padding-top:2px;" ui-sref="root.login" ng-if="authentication != null" class="mdl-button mdl-js-button mdl-button--raised mdl-color--grey-900 mdl-color-text--white mdl-js-ripple-effect">
+          <i style="font-size:18px;margin-top:-5px;" class="material-icons pointer">power_settings_new</i> Logout
+        </a>
+        <a style="padding-top:2px;" ui-sref="root.home" ng-if="authentication == null" class="mdl-button mdl-js-button mdl-button--raised mdl-color--grey-900 mdl-color-text--white mdl-js-ripple-effect">
+            <i style="font-size:18px;margin-top:-5px;" class="material-icons pointer">home</i> Home
+        </a>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable hidden">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" id="search" />
+                <label class="mdl-textfield__label" for="search">Enter your query...</label>
+            </div>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon hidden" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right hidden" for="hdrbtn">
+            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item">Contact</li>
+            <li class="mdl-menu__item">Legal information</li>
+            <li class="mdl-menu__item">Logout</li>
+        </ul>
+    </div>
+</header>

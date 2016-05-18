@@ -1,0 +1,495 @@
+<section>
+    <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <h3 class="mdl-color-text--white m-t-20 m-b-5">Edit-{{tournament.associationName}}</h3>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-cell mdl-cell-m-0 mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone no-p-l">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp">
+                    <div class="p-30">
+                        <div class="mdl-tabs mdl-js-tabs">
+                            <div class="mdl-tabs__tab-bar">
+                                <a href="#tab1-panel" class="mdl-tabs__tab is-active">Basic Details</a>
+                                <a href="#tab2-panel" class="mdl-tabs__tab">Moderators</a>
+                                <a href="#tab3-panel" class="mdl-tabs__tab">Events</a>
+                                <a href="#tab4-panel" class="mdl-tabs__tab">Additional Information</a>
+                                <a href="#tab5-panel" class="mdl-tabs__tab">Courts</a>
+                                <a href="#tab6-panel" class="mdl-tabs__tab">Accomodation Details</a>
+                            </div>
+                            <div class="mdl-tabs__panel is-active p-20" id="tab1-panel">
+                                <form name="basicDetailsForm" novalidate role="form" ng-submit="updateTournamentBasicDetails(basicDetailsForm)">
+                                    <div layout="row" layout-xs="column" class="m-t-10 m-b-10">
+                                        <div flex-gt-sm="50" flex="100" class="m-b-20">
+                                            <md-input-container class="fullwidth no-m-tb ">
+                                                <label>Association</label>
+                                                <input ng-model="tournament.associationName" name="associationName" readonly>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Location</label>
+                                                <input ng-model="tournament.location" name="location" ng-required="true" readonly>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-xs="column" class="m-b-10">
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Tournament Name</label>
+                                                <input ng-model="tournament.tournamentName" name="tournamentName" readonly>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Tournament ID</label>
+                                                <input ng-model="tournament.tournamentId" name="tournamentId" readonly>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-xs="column" class="m-b-10">
+                                        <div flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Additional Info{{editAssociationForm.$submitted}}</label>
+                                                <textarea rows="2" ng-model="basicdetails.otherDetails" name="additionalInfo" required></textarea>
+                                                <div ng-messages="basicDetailsForm.additionalInfo.$error " ng-show="submitted">
+                                                    <small ng-message="required">               Additional Info is required!</small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-xs="column" class="m-b-10">
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Date From</label>
+                                                <input name="datefrom" class="mdl-textfield__input" type="text" id="datepicker6" pikaday="datepicker6" format="DD-MMM-YYYY" trigger="open-datepicker6" theme="material-lite" ng-model="basicdetails.fromDate" required/>
+                                                <div ng-messages="basicDetailsForm.datefrom.$error" ng-show="submitted">
+                                                    <small ng-message="required" class="error">
+                                            Date From is required!</small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Date To</label>
+                                                <input name="dateto" class="mdl-textfield__input" type="text" id="datepicker7" pikaday="datepicker7" format="DD-MMM-YYYY" trigger="open-datepicker7" theme="material-lite" ng-model="basicdetails.toDate" required/>
+                                                <div ng-messages="basicDetailsForm.dateto.$error" ng-show="submitted">
+                                                    <small ng-message="{{invalidDateFromTo}}" class="error">Date To Should not be less than Date from!</small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-xs="column" class="m-b-10">
+                                        <div flex="50" class="m-b-20">
+                                            <md-input-container class="fullwidth no-m-tb">
+                                                <label>Venue</label>
+                                                <md-select name="venue" placeholder="Venue" ng-model="basicdetails.venueDocIds" multiple="true" required>
+                                                    <md-option ng-repeat="venue in venues" value="{{venue.docId}}">{{venue.name}}</md-option>
+                                                </md-select>
+                                                <div ng-messages="basicDetailsForm.venue.$error" ng-show="submitted">
+                                                    <small ng-message="required" class="error">Venue is required!</small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="50">
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-xs="column">
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Phone No</label>
+                                                <input ng-model="basicdetails.phone" name="phoneno" required ng-pattern="/^([0-9]{10})+$/" minlength="10" maxlength="10" />
+                                                <div ng-messages="basicDetailsForm.phoneno.$error" ng-show="submitted">
+                                                    <small ng-message="required">               
+                                                    Phone Number is required!</small>
+                                                    <small ng-message="pattern" class="error">
+                                                        Invalid Phone Number!
+                                                    </small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Email</label>
+                                                <input ng-model="tournament.email" name="email" readonly>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-xs="column">
+                                        <div flex="50">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Prize Money</label>
+                                                <input ng-model="basicdetails.prizeMoney" name="prizemoney" ng-required="true" ng-pattern="/^[0-9]+\.[0-9]{0,2}$/i">
+                                                <div ng-messages="basicDetailsForm.prizemoney.$error" ng-show="submitted">
+                                                    <small ng-message="required">               
+                                                    Prize Money is required!</small>
+                                                    <small ng-message="pattern">               
+                                                    Prize Money Value not Valid!</small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="20">
+                                            <md-checkbox ng-model="vm.hospitality">
+                                                Hospitality
+                                            </md-checkbox>
+                                        </div>
+                                        <div flex="30">
+                                            <div ng-if="vm.hospitality">
+                                                <md-input-container class="fullwidth no-m-tb">
+                                                    <label>Hospitality Details</label>
+                                                    <input ng-model="basicdetails.hospitality" name="hospitalityDetails">
+                                                    <div ng-messages="basicDetailsForm.hospitalityDetails.$error" ng-show="submitted">
+                                                        <small ng-message="required" class="error">Hospitality Details is required!</small>
+                                                    </div>
+                                                </md-input-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-xs="column" class="m-b-10">
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Entry Start Date</label>
+                                                <input name="entryStartDate" class="mdl-textfield__input" type="text" id="datepicker8" pikaday="datepicker8" format="DD-MMM-YYYY" trigger="open-datepicker8" theme="material-lite" ng-model="basicdetails.entryStartDate" required/>
+                                                <div ng-messages="basicDetailsForm.entryStartDate.$error" ng-show="submitted">
+                                                    <small ng-message="required" class="error">
+                                            Entry Start Date is required!</small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Entry End Date</label>
+                                                <input name="entryEtartDate" class="mdl-textfield__input" type="text" id="datepicker9" pikaday="datepicker9" format="DD-MMM-YYYY" trigger="open-datepicker9" theme="material-lite" ng-model="basicdetails.entryEndDate" required/>
+                                                <div ng-messages="basicDetailsForm.entryEtartDate.$error" ng-show="submitted">
+                                                    <small ng-message="required" class="error">Entry End Date is required!</small>
+                                                    <small ng-message="invalidEntryDateFromTo" class="error">Entry End Date Should not be less than Entry Start Date!</small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-xs="column" class="m-b-10">
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Entry Withdraw Date</label>
+                                                <input name="entryWithdrawDate" class="mdl-textfield__input" type="text" id="datepicker10" pikaday="datepicker10" format="DD-MMM-YYYY" trigger="open-datepicker10" theme="material-lite" ng-model="basicdetails.entryWithdrawDate" required/>
+                                                <div ng-messages="basicDetailsForm.entryWithdrawDate.$error" ng-show="submitted">
+                                                    <small ng-message="required" class="error">
+                                            Entry Withdraw Date is required!</small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex-gt-sm="50" flex="100">
+                                            <md-input-container class="fullwidth no-m-tb p-t-5">
+                                                <label>Finalist Date</label>
+                                                <input name="finalListDate" class="mdl-textfield__input" type="text" id="datepicker10" pikaday="datepicker10" format="DD-MMM-YYYY" trigger="open-datepicker11" theme="material-lite" ng-model="basicdetails.finalListDate" required/>
+                                                <div ng-messages="basicDetailsForm.finalListDate.$error" ng-show="submitted">
+                                                    <small ng-message="required" class="error">
+                                            Entry Withdraw Date is required!</small>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                     <div layout="flex" class="m-t-20">
+                                        <div flex layout-align="center center">
+                                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                                                Update Basic Details
+                                            </button>
+                                            <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="mdl-tabs__panel" id="tab2-panel">
+                                <div layout="flex" class="m-t-10 m-b-10">
+                                    <div flex layout-align="end center">
+                                        <a ng-click="showModeratorModel()" class="mdl-button mdl-js-button  mdl-button--raised mdl-button--blue">
+                                            <i class="material-icons">add</i>Add More
+                                        </a>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="100">
+                                        <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                            <colgroup>
+                                                <col class="auto-cell-size p-r-20">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-left">Moderator Name</th>
+                                                    <th class="text-left">Designation</th>
+                                                    <th class="text-center">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="moderator in moderators">
+                                                    <td class="mdl-data-table__cell--non-numeric">{{moderator.name}}</td>
+                                                    <td class="text-left">{{moderator.designation}}</td>
+                                                    <td ng-click="showModeratorModel($event,moderator,$index)" class="text-center"><i class="mdl-color-text--blue-grey-400 material-icons pointer ">mode_edit</i>
+                                                        </th>
+                                                </tr>
+                                                <tr ng-if="moderators.length==0">
+                                                    <td colspan="3" align="center"> No Records Found</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div layout="flex" class="m-t-20">
+                                    <div flex layout-align="center center">
+                                        <button ng-click="updateModerators()" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                                            Update Moderators
+                                        </button>
+                                        <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                    </div>                                    
+                                </div>                                
+                            </div>
+                            <div class="mdl-tabs__panel" id="tab3-panel">
+                                <div>
+                                    <div class="mdl-grid mdl-grid--no-spacing">
+                                        <div class="mdl-cell mdl-cell--6-col">
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--middle text-right">
+                                            <div class="m-t-20">
+                                                <a href class="mdl-button mdl-js-button  mdl-button--primary mdl-button--raised" ng-click="showEventModel();">
+                                                    <i class="material-icons pointer">add</i>Event
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-grid">
+                                        <div class="mdl-cell mdl-cell--12-col">
+                                            <div class="ml-card-holder">
+                                                <div class="mdl-card mdl-shadow--1dp ">
+                                                    <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                                        <colgroup>
+                                                            <col class="auto-cell-size p-r-20">
+                                                        </colgroup>
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-left">Event</th>
+                                                                <th class="text-left">Start Date</th>
+                                                                <th class="text-left">End Date</th>
+                                                                <th class="text-left">Age Category</th>
+                                                                <th class="text-center">Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="event in events">
+                                                                <td class="mdl-data-table__cell--non-numeric">{{event.eventName}}</td>
+                                                                <td class="mdl-data-table__cell--non-numeric">{{event.eventStartDate}}</td>
+                                                                <td class="mdl-data-table__cell--non-numeric">{{event.eventEndDate}}</td>
+                                                                <td class="mdl-data-table__cell--non-numeric">{{event.category}}</td>
+                                                                <td ng-click="showEventModel($event,event)" class="text-center">
+                                                                    <i class="mdl-color-text--blue-grey-400 material-icons pointer">mode_edit</i>
+                                                                </td>
+                                                            </tr>
+                                                            <tr ng-if="events.length==0">
+                                                                <td colspan="5" align="center"> No Records Found</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mdl-tabs__panel" id="tab4-panel">
+                                <div layout="flex" class="m-t-10 m-b-10">
+                                    <div flex layout-align="end center">
+                                        <a ng-click="showAddlInfoModel()" class="mdl-button mdl-js-button  mdl-button--raised mdl-button--blue">
+                                            <i class="material-icons">add</i>Add More
+                                        </a>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="100">
+                                        <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                            <colgroup>
+                                                <col class="auto-cell-size p-r-20">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-left">Key</th>
+                                                    <th class="text-left">Value</th>
+                                                    <th class="text-center">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in addlInfo">
+                                                    <td class="mdl-data-table__cell--non-numeric">{{item.key}}</td>
+                                                    <td class="text-left">{{item.value}}</td>
+                                                    <td ng-click="showAddlInfoModel($event,item,$index)" class="text-center"><i class="mdl-color-text--blue-grey-400 material-icons pointer ">mode_edit</i>
+                                                        </th>
+                                                </tr>
+                                                <tr ng-if="addlInfo.length==0">
+                                                    <td colspan="3" align="center"> No Records Found</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div layout="flex" class="m-t-20">
+                                    <div flex layout-align="center center">
+                                        <button ng-click="updateAdditionalInfo()" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                                            Update Additional Info
+                                        </button>
+                                        <md-progress-circular md-diameter="48px" md-mode="  indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                    </div>
+                                </div>
+                                <!--  <div class="mdl-grid mdl-grid--no-spacing">
+                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--middle">
+                                        <button ng-multiple="true" ngf-select ng-model="files" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                            Attachments
+                                        </button>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--middle">
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="mdl-tabs__panel" id="tab5-panel">
+                                <div>
+                                    <div class="mdl-grid mdl-grid--no-spacing">
+                                        <div class="mdl-cell mdl-cell--6-col ">
+                                        </div>
+                                        <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--middle text-right">
+                                            <div class="m-t-20">
+                                                <a ng-click="showCourtModel();" class="mdl-button mdl-js-button  mdl-button--primary mdl-button--raised">
+                                                    <i class="material-icons pointer">add</i>Court
+                                                </a>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="mdl-grid">
+                                        <div class="mdl-cell mdl-cell--12-col">
+                                            <div class="ml-card-holder">
+                                                <div class="mdl-card mdl-shadow--1dp ">
+                                                    <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                                        <colgroup>
+                                                            <col class="auto-cell-size p-r-20">
+                                                        </colgroup>
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-left">Venue Name</th>
+                                                                <th class="text-left">Working Hours</th>
+                                                                <th class="text-left">Location</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody ng-repeat="venue in tournament.venues">
+                                                            <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">{{venue.name}}</td>
+                                                                <td class="mdl-data-table__cell--non-numeric">{{venue.workingHours}}</td>
+                                                                <td class="mdl-data-table__cell--non-numeric">{{venue.location}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3">
+                                                                    <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                                                        <thead ng-if="venue.courts.length>0">
+                                                                            <th class="text-left">Select</th>
+                                                                            <th class="text-left">Court Name</th>
+                                                                            <th class="text-left">Court Type</th>
+                                                                            <th class="text-left">Lights Avalibility</th>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="item in venue.courts" flex="100" flex-gt-md="auto">
+                                                                                <td>
+                                                                                    <md-checkbox ng-checked="exists(item, selectedCourts)" ng-click="selectCourt(item, selectedCourts)">
+                                                                                        {{ item.courtName }}
+                                                                                    </md-checkbox>
+                                                                                </td>
+                                                                                <td>{{item.courtName}}</td>
+                                                                                <td>{{item.courtType}}</td>
+                                                                                <td>{{item.lightsAvalibility}}</td>
+                                                                            </tr>
+                                                                            <tr ng-if="venue.courts==0" flex="100" flex-gt-md="auto">
+                                                                                <td colspan="3" align="center"> No Courts Available </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody ng-if="tournament.venues.length==0">
+                                                            <tr>
+                                                                <td colspan='4' class="mdl-data-table__cell--non-numeric">No Records Found </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div layout="flex" class="m-t-20">
+                                        <div flex layout-align="center center">
+                                            <button ng-click="updateCourts()" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                                                Update Courts
+                                            </button>
+                                            <md-progress-circular md-diameter="48px" md-    mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mdl-tabs__panel" id="tab6-panel">
+                                <div>
+                                    <div class="mdl-grid mdl-grid--no-spacing">
+                                        <div class="mdl-cell mdl-cell--6-col ">
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--middle text-right">
+                                            <div class="m-t-20">
+                                                <a ng-click="showAccomidationDetailsModal();" class="mdl-button mdl-js-button  mdl-button--primary mdl-button--raised">
+                                                    <i class="material-icons pointer">add</i>Hotel
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <div flex="100">
+                                            <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                                <colgroup>
+                                                    <col class="auto-cell-size p-r-20">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-left">Hotel Name</th>
+                                                        <th class="text-left">Contact Person</th>
+                                                        <th class="text-left">Phone</th>
+                                                        <th class="text-left">Tarrif</th>
+                                                        <th class="text-left">location</th>
+                                                        <th class="text-center">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in accommodations">
+                                                        <td class="mdl-data-table__cell--non-numeric">{{item.hotelName}}</td>
+                                                        <td class="mdl-data-table__cell--non-numeric">{{item.contactPerson}}</td>
+                                                        <td class="mdl-data-table__cell--non-numeric">{{item.phone}}</td>
+                                                        <td class="mdl-data-table__cell--non-numeric">{{item.tariff}}</td>
+                                                        <td class="mdl-data-table__cell--non-numeric">{{item.location}}</td>
+                                                        <td ng-click="showAccomidationDetailsModal($event,item,$index)" class="text-center"><i class="mdl-color-text--blue-grey-400 material-icons pointer ">mode_edit</i>
+                                                            </th>
+                                                    </tr>
+                                                    <tr ng-if="accommodations.length==0">
+                                                        <td colspan="3" align="center"> No Records Found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div layout="flex" class="m-t-20">
+                                        <div flex layout-align="center center">
+                                            <button ng-click="updateAccomodationDetails()" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                                                Update accommodation details
+                                            </button>
+                                            <md-progress-circular md-diameter="48px" md-    mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

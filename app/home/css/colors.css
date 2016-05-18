@@ -1,0 +1,45 @@
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Text color
+2. Background color
+3. Border color
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+    1. Text color
+-------------------------------------------------------------------*/
+a:hover,
+#footer a:hover,
+.pullquotes,
+.entry_category a,
+blockquote.alt:before,
+.page_404 i {
+    color: #2599CF
+}
+
+/*------------------------------------------------------------------
+    2. Background color
+-------------------------------------------------------------------*/
+#header .header_menu,
+#header .header_main .logo,
+.carousel_post_details .entry_category a,
+.widget_timeline_posts .item:hover .timeline_content .pin_holder .inside,
+#footer .widget_timeline_posts .item:hover .timeline_content .pin_holder .inside,
+.main_slider .owl-controls .owl-page.active span,
+.main_slider .owl-controls.clickable .owl-page:hover span,
+.grid_layout_block .item .entry_category a,
+.author_box .posts,
+.onsale,
+.post_review .criteria_lines .criteria_footer span,
+.widget_post_reviews ul li .entry_review {
+    background-color: #2599CF
+}
+
+/*------------------------------------------------------------------
+    3. Border color
+-------------------------------------------------------------------*/
+blockquote,
+.widget_timeline_posts .timeline_content .pin_holder .inside {
+    border-color: #2599CF
+}

@@ -1,0 +1,222 @@
+<md-dialog ng-cloak style="min-width:70%;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white;">Event Information</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+            <i ng-click="cancel()" class="mdl-color-text--white material-icons pointer">cancel</i>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <form name="dataForm" ng-submit="save(dataForm,addlInfo)" novalidate>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col ">
+                    <md-input-container class="fullwidth" >
+                        <label>Series</label>
+                        <md-select ng-model="event.series" name="series">
+                            <md-option ng-repeat="series in seriesData" value="{{series.value}}"  >
+                                {{series.name}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="dataForm.series.$error" 
+                            ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                           Series is required!
+                                        </small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col ">
+                    <md-input-container class="fullwidth">
+                        <label>Category<sup class="error">*</sup></label>
+                        <md-select ng-model="event.category"  name="category" required>
+                            <md-option ng-repeat="category in categoryData" value="{{category.value}}">
+                                {{category.name}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="dataForm.category.$error" 
+                            ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                           Category is required!
+                                        </small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col ">
+                    <md-input-container class="fullwidth">
+                        <label>Age<sup class="error">*</sup></label>
+                        <md-select ng-model="event.ageGroup" name="age" required>
+                            <md-option ng-repeat="age in ageData" value="{{age.value}}" >
+                                {{age.name}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="dataForm.age.$error" 
+                            ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                           Age is required!
+                                        </small>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col">
+                
+                    <md-input-container class="fullwidth">
+                     <label>Event Name<sup class="error">*</sup></label>
+                       <input class="mdl-textfield__input" type="text" ng-model="event.eventName" name="eventName" required/>
+
+                    <div ng-messages="dataForm.eventName.$error" 
+                            ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                           Event Name is required!
+                                        </small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <md-input-container class="fullwidth">
+                        <label>Assign Admin<sup class="error">*</sup></label>
+                        <md-select ng-model="event.adminDocId" name="Admin" required>
+                            <md-option ng-repeat="admin in profiles" value="{{admin.docId}}" >
+                                {{admin.name}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="dataForm.Admin.$error" 
+                            ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                           Assign Admin is required!
+                                        </small>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <i class="material-icons m-l-15 m-t-25 ">insert_invitation</i>
+                <div flex="50">
+                    <md-input-container class="fullwidth">
+                        <label>Start Date<sup class="error">*</sup></label>
+                        <input class="mdl-textfield__input" type="text" pikaday="dob" format="DD-MMM-YYYY" year-range=[1920,2016] on-select="onPikadaySelect(pikaday)" theme="material-lite" ng-model="event.eventStartDate"  name="eventStartDate" required/>
+                        <div ng-messages="dataForm.eventStartDate.$error" ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                            Start Date is required!
+                                        </small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <i class="material-icons m-l-15 m-t-25 ">insert_invitation</i>
+                <div flex="50">
+                    <md-input-container class="fullwidth">
+                        <label>End Date</label>
+                        <input class="mdl-textfield__input" type="text" pikaday="dob" format="DD-MMM-YYYY" year-range=[1920,2016] on-select="onPikadaySelect(pikaday)" theme="material-lite" ng-model="event.eventEndDate" name="eventEndDate" />
+                        <div ng-messages="dataForm.eventEndDate.$error" ng-show="submitted">
+                            <small ng-show="invalidDate" class="error">
+                                            End Date Should not Be less than Start Date !
+                                        </small>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <i class="material-icons m-l-15 m-t-25 ">insert_invitation</i>
+                <div flex="25">
+                    <md-input-container class="fullwidth">
+                        <label>Signin Start Date<sup class="error">*</sup></label>
+                        <input class="mdl-textfield__input" type="text" pikaday="dob" format="DD-MMM-YYYY" year-range=[2016,2020] on-select="onPikadaySelect(pikaday)" theme="material-lite" ng-model="event.signinStartDate" name="sDate" required/>
+                        <div ng-messages="dataForm.sDate.$error" ng-show="submitted">
+                            <small ng-message="required" class="error">
+                                           SignIn start Date is required!
+                                        </small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="25">
+                    <mdp-time-picker name="signinStartTime" 
+                    ng-model="event.signinStartTime">
+                    <div ng-messages="dataForm.signinStartTime.$error" ng-show="submitted">
+                            <small ng-message="empty" class="error">
+                                           SignIn start Time is required!
+                                        </small>
+                        </div></mdp-time-picker>
+                    
+                </div>
+                <i class="material-icons m-l-15 m-t-25 ">insert_invitation</i>
+                <div flex="25">
+                    <md-input-container class="fullwidth">
+                        <label>Signin End Date</label>
+                        <input class="mdl-textfield__input" type="text" pikaday="dob" format="DD-MMM-YYYY" year-range=[1920,2016] theme="material-lite" ng-model="event.signinEndDate" name="signinEndtDate" ng-required="true" />
+                        <div ng-messages="dataForm.signinEndtDate.$error" ng-show="submitted">
+                            <small ng-show="invalidSignDate" class="error">
+                                End Date Should not Be less than Start Date !
+                            </small>
+
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="25">
+                    <mdp-time-picker ng-model="event.signinEndTime" name="signinEndTime" >
+                        <div ng-messages="dataForm.signinEndTime.$error" ng-show="submitted">
+                            <small ng-show="invalidSignTime" class="error">
+                                           SignIn End Time Should not Be less than Start Time !
+                                        </small>
+                        </div>
+                    </mdp-time-picker>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col">
+                    <md-input-container class="fullwidth">
+                        <label>Entry Fee</label>
+                        <input class="mdl-textfield__input" type="text" ng-model="event.entryFee" name="entryfee" ng-pattern="/^[0-9]+\.[0-9]{0,2}$/i" />
+                         <div ng-messages="dataForm.entryfee.$error" ng-show="submitted">
+                            <small ng-message="pattern">               
+                                 Entry Fee value not Valid!</small>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <md-input-container class="fullwidth">
+                        <label>Daily Allowances</label>
+                        <input class="mdl-textfield__input" type="text" ng-model="event.dailyAllowances" name="dailyAllowances" ng-pattern="/^[0-9]+\.[0-9]{0,2}$/i"/>
+                        <div ng-messages="dataForm.dailyAllowances.$error" ng-show="submitted">
+                            <small ng-message="pattern">               
+                                Daily Allowances value not Valid!
+                            </small>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col">
+                    <md-input-container class="fullwidth">
+                        <label>Remarks</label>
+                        <input class="mdl-textfield__input" type="text" ng-model="event.remarks" name="remarks" />
+                    </md-input-container>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <md-input-container class="fullwidth">
+                        <label>Match Rules</label>
+                        <input class="mdl-textfield__input" type="text" ng-model="event.rules" name="matchRules" />
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col t-center">
+                    <div layout="row">
+                        <div flex="50" class="t-right">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect">
+                        {{(event.docId)?'Update':'Add'}}
+                    </button>
+                        </div>
+                        <div flex="50">
+                            <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+    </md-dialog-content>
+</md-dialog>

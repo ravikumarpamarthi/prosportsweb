@@ -1,0 +1,275 @@
+<section>
+    <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <h3 class="mdl-color-text--white m-t-20 m-b-5">Create Tournament</h3>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-cell mdl-cell-m-0 mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone no-p-l">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp">
+                    <div class="p-30">
+                        <div class="mdl-tabs mdl-js-tabs">
+                            <div class="mdl-tabs__tab-bar">
+                                <a href="#tab1-panel" class="mdl-tabs__tab is-active" ng-class="(active=='true')?'is-active':''">Post Players</a>
+                                <a href="#tab2-panel" class="mdl-tabs__tab" ng-class="(active=='true')?'is-active':''">Prepare Draws</a>
+                                <a href="#tab3-panel" class="mdl-tabs__tab" ng-init="active='false'" ng-class="(active=='true')?'is-active':''">Prepare Schedule</a>
+                            </div>
+                            <div class="mdl-tabs__panel is-active p-t-20" id="tab1-panel">
+                                <div ng-show="addOrEditPlayer" class="customNegMargin">
+                                    <div layout="row">
+                                        <div flex="50">
+                                        </div>
+                                        <div flex="20">
+                                            <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loadingEntries" class="md-accent"></md-progress-circular>
+                                        </div>
+                                        <div flex="40">
+                                        </div>
+                                    </div>
+                                    <div class="mdl-grid mdl-grid--no-spacing">
+                                        <div class="mdl-cell mdl-cell--6-col">
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--6-col mdl-cell--middle text-right">
+                                            <div>
+                                                <a href="" ng-init="addOrEditPlayer=true" class="mdl-button mdl-js-button  mdl-button--primary mdl-button--raised" ng-click="addPlayerModel();">
+                                                    <i class="material-icons pointer">add</i>Player
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-grid ">
+                                        <div class="mdl-cell mdl-cell--12-col">
+                                            <div class="ml-card-holder ">
+                                                <div class="">
+                                                    <div layout="row" layout-align="center center" class="custom-table-padding">
+                                                        <table class="mdl-data-table mdl-js-data-table fullwidth">
+                                                            <colgroup>
+                                                                <col class="auto-cell-size p-r-20">
+                                                            </colgroup>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-left">S.No</th>
+                                                                    <th class="mdl-data-table__cell--non-numeric">Player Name</th>
+                                                                    <th class="text-left">Date & Entry Time</th>
+                                                                    <th class="text-left">Points</th>
+                                                                    <th class="text-left">Means of entry</th>
+                                                                    <th class="text-center">Sign In</th>
+                                                                    <th class="text-center">Withdraw</th>
+                                                                    <th class="text-right">Maindraw</th>
+                                                                    <th class="text-center">Entry Mode</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody ng-repeat="item in entries">
+                                                                <tr >
+                                                                    <td>{{$index+1}}</td>
+                                                                    <td class="mdl-data-table__cell--non-numeric">
+                                                                        <div ng-repeat="player in item.players">
+                                                                            {{player.name}}
+                                                                            <br ng-if="item.players.length>1">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>{{item.dateTimeOfEntry}}</td>
+                                                                    <td>
+                                                                        <div ng-repeat="i in item.players">
+                                                                            <input ng-model="item.players[$index].points" placeholder="Points" style="width:100%;text-align:center;">
+                                                                            <br/>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td style="margin-top:0px;">
+                                                                        <md-select placeholder="Select Means Of Entry" ng-model="item.meansOfEntry">
+                                                                            <md-option ng-repeat="entry in MEANS_OF_ENTRIES" value="{{entry.value}}" name="entry" required>
+                                                                                {{entry.name}}
+                                                                            </md-option>
+                                                                        </md-select>
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <md-checkbox class="md-primary" ng-model="item.signin" aria-label="Checkbox 1" ng-true-value="'YES'" ng-false-value="'NO'">
+                                                                        </md-checkbox>
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <md-checkbox class="md-primary" ng-model="item.status" ng-true-value="'WITHDRAW'" ng-false-value="'ENTRY'">
+                                                                        </md-checkbox>
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <md-checkbox class="md-primary" ng-model="item.draw" ng-true-value="'MAIN'" ng-false-value="'QUALIFYING'" ng-disabled="(item.status=='WITHDRAW')">
+                                                                        </md-checkbox>
+                                                                    </td>
+                                                                    <td >
+                                                                        <md-radio-group ng-model="item.mainEntryMode" layout="row">
+                                                                            <md-radio-button value="THRU_POINTS" class="md-primary md-rad-cus-m" ng-disabled="(item.status=='WITHDRAW' || item.draw!='MAIN')">P</md-radio-button>
+                                                                            <md-radio-button value="QUALIFYING" class="md-primary md-rad-cus-m" ng-disabled="(item.status=='WITHDRAW' || item.draw!='MAIN')">Q</md-radio-button>
+                                                                            <md-radio-button value="WILDCARD" class="md-primary md-rad-cus-m" ng-disabled="(item.status=='WITHDRAW' || item.draw!='MAIN')">WC</md-radio-button>
+                                                                            <md-radio-button value="LUCKY_LOSER" class="md-primary md-rad-cus-m" ng-disabled="((item.status=='WITHDRAW' || item.draw!='MAIN') || item.draw!='MAIN') ">LL</md-radio-button>
+                                                                        </md-radio-group>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div layout="row">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-cell mdl-cell--12-col t-center">
+                                                    <div layout="row" class="t-right">
+                                                        <div flex="50">
+                                                            <md-button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" ng-click="updateEntries()" ng-disabled="disable">
+                                                                Update
+                                                            </md-button>
+                                                        </div>
+                                                        <div flex="50">
+                                                            <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                                        </div>
+                                                    </div>
+                                                    <!--   <md-button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                                Send to draw
+                                            </md-button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mdl-tabs__panel p-20" id="tab2-panel">
+                                <div class="mdl-grid mdl-grid--no-spacing m-b-30">
+                                    <div class="mdl-cell mdl-cell-m-0 mdl-cell--6-col p-t-20">
+                                        <md-select placeholder="Select Draw" ng-model="drawItem" ng-change="getDrawPlayers(drawItem)">
+                                            <md-option ng-repeat="draw in drawList" value="{{draw.value}}" name="draw">
+                                                {{draw. name}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loadingDraw" class="md-accent"></md-progress-circular>
+                                    <div class="mdl-cell mdl-cell-m-0 mdl-cell--6-col p-t-20" ng-if="!tournamentBracket && drawPlayers">
+                                        <md-radio-group layout="row" ng-model="drawData.type">
+                                            <md-radio-button value="MANUAL" class="md-primary">Manual Draw</md-radio-button>
+                                            <md-radio-button value="SEEDED" class="md-primary">Seeded Draw</md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                </div>
+                                <div ng-if="!tournamentBracket && drawPlayers">
+                                    <div ng-if="drawData.type=='SEEDED'">
+                                        <div flex layout-align="center center" ng-click="shuffle($event)">
+                                            <a href type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Shuffle</a>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-grid mdl-grid--no-spacing">
+                                        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                            <div class="p-20 ml-card-holder ">
+                                                <div class="mdl-card mdl-shadow--1dp m-b-30">
+                                                    <div class="draw-box" ng-if="lists">
+                                                        <div layout="row" ng-repeat="list in lists">
+                                                            <div ng-if="!$last">{{$index+1 | customNumber:2}}
+                                                            </div>
+                                                            <div style="margin-bottom:-10px;" flex="{{($last)?40:100}}" ng-class="{'last-player-index':$last}">
+                                                                <md-content>
+                                                                    <ul dnd-list="list.people" dnd-allowed-types="list.allowedTypes" dnd-disable-if="list.people.length >= list.max || list.bye==true" style="min-height: 50px;" class="dd-ul">
+                                                                        <li ng-if="list.bye">
+                                                                            BYE
+                                                                        </li>
+                                                                        <li ng-repeat="person in list.people" dnd-draggable="person" dnd-type="person.type" dnd-disable-if="person.type == 'unknown'" dnd-moved="list.people.splice($index, 1)" dnd-effect-allowed="move" class="background-{{person.type}} dd-li" dnd-selected="person.selected = !person.selected">
+                                                                            <dnd-nodrag>
+                                                                                <div class="name">
+                                                                                    {{person.teamName}}-{{person.points}}
+                                                                                </div>
+                                                                            </dnd-nodrag>
+                                                                        </li>
+                                                                        <li class="dndPlaceholder">
+                                                                            Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
+                                                                        </li>
+                                                                    </ul>
+                                                                </md-content>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <pre>{{modelAsJson}}</pre> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-grid mdl-grid--no-spacing m-t-10">
+                                        <div class="mdl-cell mdl-cell--12-col t-center">
+                                            <div layout="row" layout-align="center center">
+                                                <div flex="50" style="text-align:right;">
+                                                    <md-button ng-click="setSeededPlayers()" class="mdl-button mdl-js-button mdl-button--accent mdl-button--colored mdl-button--raised" ng-disabled="disable">
+                                                        Reset
+                                                    </md-button>
+                                                </div>
+                                                <div flex style="text-align:left;">
+                                                    <md-button ng-click="publishSeededDraw(drawItem)" class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-button--colored" ng-disabled="disable">
+                                                        Publish Draw
+                                                    </md-button>
+                                                    <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                                </div>
+                                                <div flex="10">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tournamentBracket"></div>
+                            </div>
+                            <div class="mdl-tabs__panel " id="tab3-panel" class="fullwidth">
+                                <div class="mdl-grid mdl-grid--no-spacing m-t-10">
+                                    <div class="mdl-cell mdl-cell-m-0 mdl-cell--6-col p-t-20">
+                                        <md-select placeholder="Select Draw" ng-model="scheduleDraw" ng-change="getMatches(scheduleDraw)">
+                                            <md-option ng-repeat="draw in drawList" value="{{draw.value}}" name="draw">
+                                                {{draw.name}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell-m-0 mdl-cell--6-col p-t-20">
+                                        <md-progress-circular md-diameter="48px" md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-circular>
+                                    </div>
+                                </div>
+                                <table class="m-t-20 matches-table mdl-data-table mdl-js-data-table" ng-repeat="playerPerTeam in playersToFilter() | filter:filterTeams | orderBy:'-roundNo'">
+                                    <colgroup>
+                                        <col class="auto-cell-size">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th class="mdl-data-table__cell--non-numeric full-width" colspan="4">{{playerPerTeam.roundName}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="match in matches | filter:{roundNo: playerPerTeam.roundNo}" class="fullwidth">
+                                        <tr>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{match.teams[0].name}}</td>
+                                            <td>
+                                                {{match.teams[0].position}}
+                                            </td>
+                                            <td rowspan="2" style="vertical-align:middle;">
+                                                <md-button ng-if="match.status=='YET_TO_SCHEDULE'" class="mdl-button mdl-js-button mdl-button--primary mdl-button--colored mdl-button--raised" ng-click="matchScheduleModal($event,match);">
+                                                    Schedule
+                                                </md-button>
+                                                <md-button ng-if="match.status=='SCHEDULED'" class="mdl-button mdl-js-button mdl-button--primary mdl-button--colored mdl-button--raised" ng-click="matchScheduleModal($event,match);">
+                                                    Change Schedule
+                                                </md-button>
+                                                <md-button ng-if="match.status=='SCHEDULED'" class="mdl-button mdl-js-button mdl-button--primary mdl-button--colored mdl-button--raised" ng-click="matchResultModal($event,match)">
+                                                    Add Score
+                                                </md-button>
+                                                <md-button ng-if="match.status=='LIVE'" class="mdl-button mdl-js-button mdl-button--primary mdl-button--colored mdl-button--raised" ng-click="matchResultModal($event,match)">
+                                                    Add Score
+                                                </md-button>
+                                                <p ng-if="match.status=='COMPLETED'"> {{(match.teams[0].status=='WINNER')?match.teams[0].name:''}} {{(match.teams[1].status=='WINNER')?match.teams[1].name:''}}
+                                                </p>
+                                                <p ng-if="match.status=='COMPLETED'">
+                                                    {{getScores(match.teams)}}
+                                                </p>
+                                            </td>
+                                            <td class="text-center">
+                                                DATE & TIME
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mdl-data-table__cell--non-numeric">{{match.teams[1].name}}</td>
+                                            <td>
+                                                {{match.teams[1].position}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{match.startTime}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+</section>

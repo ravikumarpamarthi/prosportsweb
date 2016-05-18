@@ -1,0 +1,48 @@
+<md-dialog ng-cloak style="min-width:50%;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white;">Shuffle Players</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+            <i ng-click="cancel()" class="mdl-color-text--white material-icons pointer">cancel</i>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="height:30%;overflow:scroll;">
+        <div layout="row" flex-offset="20">
+            <div flex=50>
+                <h3>Positions</h3>
+                <md-checkbox class="md-warn" aria-label="Select All" ng-checked="isChecked()" ng-click="toggleAll()">
+                    <span ng-if="isChecked()">Un-</span>Select All
+                </md-checkbox>
+                <div>
+                    <label class="mdl-checkbox" ng-repeat="item in items.positions">
+                        <md-checkbox class="md-primary" ng-model="item.selectedPosition" aria-label="Checkbox 1" ng-checked="isSelectedPosition(item)" ng-click="togglePosition(item,$index)">
+                            Position {{item.position}}
+                        </md-checkbox>
+                    </label>
+                </div>
+            </div>
+            <div flex=50>
+                <h3>Players</h3>
+                <md-checkbox class="md-warn" aria-label="Select All" ng-checked="isCheckedPlayers()" ng-click="toggleAllPlayers()">
+                    <span ng-if="isCheckedPlayers()">Un-</span>Select All
+                </md-checkbox>
+                <div>
+                    <label class="mdl-checkbox" ng-repeat="team in items.teams">
+                        <md-checkbox class="md-primary" ng-click="togglePlayers(team,$index)" aria-label="Checkbox 1" ng-checked="isSelectedPlayer(team)">{{team.teamName}}-{{team.points}}
+                        </md-checkbox>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div layout="row" class="p-20 text-center" flex-offset="40">
+            <div flex>
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color--indigo-A700 mdl-color-text--white mdl-js-ripple-effect" ng-click="shuffle()">
+                    SHUFFLE
+                </button>
+            </div>
+        </div>
+    </md-dialog-content>
+</md-dialog>

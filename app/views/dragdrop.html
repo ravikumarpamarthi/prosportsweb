@@ -1,0 +1,63 @@
+<section class="tables-data">
+    <div class="mdl-color--grey-700 ml-header relative clear">
+        <div class="p-20">
+            <div class="mdl-grid mdl-grid--no-spacing">
+                <div class="mdl-cell mdl-cell--6-col ">
+                    <h3 class="mdl-color-text--white ">Associations</h3>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--middle text-right hidden">
+                    <div class="m-t-20">
+                        <a href="#/createassociation" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-color-text--white mdl-js-ripple-effect">
+                            <i class="material-icons pointer">add</i>Create Association
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <div class="p-20 ml-card-holder ml-card-holder-first">
+                <div class="mdl-card mdl-shadow--1dp m-b-30">
+                    <div class="mdl-card__title hidden">
+                        <h2 class="mdl-card__title-text">{{data.length}} rows</h2>
+                    </div>
+                    <div style="height:500px;overflow:scroll;padding:30px;">
+                        <div layout="row" ng-repeat="list in lists">
+                        	<div style="padding:10px;" ng-if="!$last">{{$index+1}}</div>
+                            <div flex="40" ng-class="{'last-player-index':$last}">
+                                <md-toolbar class="hidden md-theme-light">
+                                    <h2 class="md-toolbar-tools">
+                                	<span style="color:white;">{{list.label}}</span>
+                                </h2>
+                                </md-toolbar>
+                                <md-content>
+                                    <ul dnd-list="list.people" dnd-allowed-types="list.allowedTypes" dnd-disable-if="list.people.length >= list.max" style="min-height: 50px;" class="dd-ul">
+                                        <li ng-repeat="person in list.people" dnd-draggable="person" dnd-type="person.type" dnd-disable-if="person.type == 'unknown'" dnd-moved="list.people.splice($index, 1)" dnd-effect-allowed="move" class="background-{{person.type}} dd-li" dnd-selected="person.selected = !person.selected">
+                                            <dnd-nodrag>                                  
+                                                <div class="name">
+                                                    {{person.name}}
+                                                </div>
+                                            </dnd-nodrag>
+                                        </li>
+                                        <li class="dndPlaceholder">
+                                            Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
+                                        </li>
+                                    </ul>
+                                </md-content>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <pre>{{modelAsJson}}</pre> -->
+                </div>
+                <div>
+                    <div flex layout-align="center center" ng-click="shuffle($event)">
+                        <a href type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        Shuffle
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
